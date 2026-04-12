@@ -1,7 +1,8 @@
 name: memorization
 channels:
-  - conda-forge
   - pytorch
+  - nvidia
+  - conda-forge
   - defaults
 dependencies:
   # Python
@@ -27,6 +28,6 @@ dependencies:
   - pip
 
   # PyTorch and related (from pytorch channel)
-  - pytorch
-  - torchvision
-  - pytorch-cuda=11.4  # Change to =12.1 for CUDA 12.x or remove for CPU-only
+  - pytorch::pytorch
+  - pytorch::torchvision
+  - pytorch-cuda=12.1  # Common supported option; use 11.8 or 12.4 if needed
