@@ -81,7 +81,13 @@ parser.add_argument("-n", "--num", help="Number of training images", type=int, r
 parser.add_argument("-s", "--img_size", help="Image size after resizing", type=int, default=16)
 parser.add_argument("-LR", "--learning_rate", help="Learning rate for optimization", type=float, required=True)
 parser.add_argument("-O", "--optim", help="Optimisation type (SGD_Momentum or Adam)", type=str, required=True)
-parser.add_argument("-W", "--nbase", help="Number of base filters", type=int, required=True)
+parser.add_argument(
+    "-W",
+    "--nbase",
+    help="Model width: base filters for Unet, hidden width (d_model) for GMM",
+    type=int,
+    required=True,
+)
 parser.add_argument("-B", "--batch_size", help="Batch size", type=int, default=512)
 parser.add_argument("-t", "--time", help="Diffusion timestep", type=int, default=-1)
 parser.add_argument(
