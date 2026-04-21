@@ -3,27 +3,27 @@
 ### –- specify queue --
 #BSUB -q gpuv100
 ### -- set the job Name --
-#BSUB -J calculate_geodesics
+#BSUB -J memorization_sprites
 ### -- ask for number of cores (default: 1) --
-#BSUB -n 8
+#BSUB -n 4
 ### -- Select the gpu resources:
-#BSUB -gpu "num=2:mode=exclusive_process"
+#BSUB -gpu "num=1:mode=exclusive_process"
 ### -- set walltime limit: hh:mm --  maximum 24 hours for GPU-queues right now
-#BSUB -W 12:00
+#BSUB -W 24:00
 # request system-memory
-#BSUB -R "rusage[mem=20GB]"
+#BSUB -R "rusage[mem=10GB]"
 ### -- set the email address --
 # please uncomment the following line and put in your e-mail address,
 # if you want to receive e-mail notifications on a non-default address
-##BSUB -u s204164@dtu.dk
+#BSUB -u s204164@dtu.dk
 ### -- send notification at start --
 #BSUB -B
 ### -- send notification at completion--
 #BSUB -N
 ### -- Specify the output and error file. %J is the job-id --
 ### -- -o and -e mean append, -oo and -eo mean overwrite --
-#BSUB -o batch_output/geodesics_%J.out
-#BSUB -e batch_output/geodesics_%J.err
+#BSUB -o batch_output/memorization_sprites_GMM_%J.out
+#BSUB -e batch_output/memorization_sprites_GMM_%J.err
 # -- end of LSF options --
 
 nvidia-smi
@@ -34,4 +34,4 @@ module load cuda/11.6
 
 source .venv/bin/activate
 cd src/Training
-python run_Unet.py -n 1024 -i 0 -s 32 -LR 0.0001 -O Adam -W 32 -t -1
+python run_Sprites.py -n 4096 -s 16 --seed 1 -W 128 -O Adam -B 512 -t -1 -M GMM -LR 0.0006 --n_steps 4000000
