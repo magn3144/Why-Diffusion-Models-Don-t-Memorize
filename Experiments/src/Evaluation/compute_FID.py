@@ -14,6 +14,7 @@ import warnings
 import torchvision
 import subprocess
 import shutil
+import glob
 
 # Add Utils to path
 sys.path.insert(1, '../Utils/')      # In case we run from Experiments/Evaluation
@@ -161,8 +162,12 @@ def main():
         config.OPTIM, config.BATCH_SIZE, config.LR, args.index
     )
     
-    # Define training times to analyze
-    training_times = cfg.get_training_times()
+    # Define training times to analyze (use existing checkpoints)
+    path_models = config.path_save + type_model + 'Models/'
+    checkpoint_files = glob.glob(os.path.join(path_models, 'Model_*'))
+    training_times = sorted({int(os.path.basename(f).split('_')[-1]) for f in checkpoint_files})
+    if len(training_times) == 0:
+        raise FileNotFoundError('No checkpoints found in {:s}'.format(path_models))
     
     # Load training data (for consistency, though not used in FID computation)
     train_images, _ = cfg.load_training_data(config, args.index)

@@ -3,6 +3,7 @@ import numpy as np
 import torch
 import os
 import sys
+import glob
 from tqdm import tqdm
 
 sys.path.insert(1, '../Utils/')      # In case we run from Experiments/Generation
@@ -76,8 +77,12 @@ print('Generating {:d} samples'.format(Nsamples))
 batch_gen = 100
 Ns = Nsamples // batch_gen
 
-# Define the training times to sample models
-training_times = cfg.get_training_times()
+# Define the training times to sample models (use existing checkpoints)
+path_models = config.path_save + type_model + '/Models/'
+checkpoint_files = glob.glob(os.path.join(path_models, 'Model_*'))
+training_times = sorted({int(os.path.basename(f).split('_')[-1]) for f in checkpoint_files})
+if len(training_times) == 0:
+    raise FileNotFoundError('No checkpoints found in {:s}'.format(path_models))
 
 # Loop over training times
 for (j, checkpoint_id) in enumerate(training_times):

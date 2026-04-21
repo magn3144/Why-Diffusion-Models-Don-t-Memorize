@@ -12,6 +12,7 @@ import sys
 import argparse
 from tqdm import tqdm
 import warnings
+import glob
 
 # Add Utils to path
 sys.path.insert(1, '../Utils/')      # In case we run from Experiments/Evaluation
@@ -165,8 +166,12 @@ def main():
         os.remove(file_fc)
     os.makedirs(path_file, exist_ok=True)
     
-    # Define training times to analyze
-    training_times = cfg.get_training_times()
+    # Define training times to analyze (use existing checkpoints)
+    path_models = config.path_save + type_model + 'Models/'
+    checkpoint_files = glob.glob(os.path.join(path_models, 'Model_*'))
+    training_times = sorted({int(os.path.basename(f).split('_')[-1]) for f in checkpoint_files})
+    if len(training_times) == 0:
+        raise FileNotFoundError('No checkpoints found in {:s}'.format(path_models))
     
     print(f"Computing memorization fraction for {len(training_times)} checkpoints...")
     print(f"Model: {type_model}")
