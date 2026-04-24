@@ -249,7 +249,8 @@ def sample_diffusion_from_noise_DDIM(model, n_images=25, config=TrainingConfig()
 #==========================================
 def train_one_batch(X, model, optimizer, loss_fn, 
                     config=TrainingConfig(), 
-                    df=DiffusionConfig()):
+                    df=DiffusionConfig(),
+                    scheduler=None):
     model.train()
     
     # Generate random times
@@ -272,13 +273,18 @@ def train_one_batch(X, model, optimizer, loss_fn,
     # Update parameters of the model
     optimizer.zero_grad()
     loss.backward()
+    grad_clip = getattr(config, 'GRAD_CLIP', 0.0)
+    if grad_clip is not None and grad_clip > 0:
+        torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=grad_clip)
     optimizer.step()
+    if scheduler is not None:
+        scheduler.step()
     
     # Return the current loss and the batch of noisy images
     return loss.detach().item(), X_t
 
 
-def train(model, trainloader, optimizer, config, df, loss_fn,
+def train(model, trainloader, optimizer, scheduler, config, df, loss_fn,
           sweep=1., times_save=[], offset=0, suffix='', generate=False):
     
     n_steps = offset    # Number of SGD steps
@@ -308,7 +314,7 @@ def train(model, trainloader, optimizer, config, df, loss_fn,
                         fig.savefig(config.path_save + suffix + 'Images/' + 'Sample_{:d}.pdf'.format(n_steps), bbox_inches='tight')
                         plt.close('all')
             
-            loss, _, = train_one_batch(X, model, optimizer, loss_fn, config, df)
+            loss, _, = train_one_batch(X, model, optimizer, loss_fn, config, df, scheduler)
             n_steps += 1            # Update number of steps
             
                         

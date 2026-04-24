@@ -130,9 +130,10 @@ if __name__ == '__main__':
     if offset > 0:
         path_checkpoint = config.path_save + '/{:s}/Models/Model_{:d}'.format(suffix, offset)
         model = loader.load_model(model, path_checkpoint)
-        model.to(config.DEVICE)
-            
-    model = nn.DataParallel(model, device_ids = [0, 1])
+    
+    # Use all visible GPUs when more than one is available; otherwise run on a single device.
+    if torch.cuda.is_available() and torch.cuda.device_count() > 1:
+        model = nn.DataParallel(model)
     model.to(config.DEVICE)
 
 if __name__ == '__main__':
@@ -159,5 +160,5 @@ if __name__ == '__main__':
     # Saving times for the model during training
     times_save = cfg.get_training_times()
     
-    Diffusion.train(model, trainloader, optimizer, config, df, 
+    Diffusion.train(model, trainloader, optimizer, None, config, df, 
                     loss_fn, sweeping, times_save, offset, suffix, generate=True)

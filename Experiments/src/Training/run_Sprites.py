@@ -1,6 +1,7 @@
 #%%
 import argparse
 import glob
+import math
 import os
 import sys
 
@@ -102,6 +103,30 @@ parser.add_argument("--seed", help="Seed used to sample the training subset", ty
 parser.add_argument("--n_steps", help="Number of optimization steps", type=int, default=int(2e6))
 parser.add_argument("--timesteps", help="Number of diffusion timesteps", type=int, default=1000)
 parser.add_argument("--device", help="Training device (e.g., cuda:0 or cpu)", type=str, default=None)
+parser.add_argument("--momentum", help="Momentum for SGD_Momentum", type=float, default=0.95)
+parser.add_argument("--weight_decay", help="Weight decay for optimizer", type=float, default=0.0)
+parser.add_argument("--nesterov", help="Use Nesterov momentum with SGD_Momentum", action="store_true")
+parser.add_argument(
+    "--scheduler",
+    help="Learning rate scheduler (none or cosine)",
+    type=str,
+    default="none",
+    choices=["none", "cosine"],
+)
+parser.add_argument("--warmup_steps", help="Number of warmup steps for cosine scheduler", type=int, default=0)
+parser.add_argument(
+    "--min_lr_ratio",
+    help="Minimum lr ratio for cosine scheduler (final lr = min_lr_ratio * base lr)",
+    type=float,
+    default=0.05,
+)
+parser.add_argument("--grad_clip", help="Gradient clipping max norm (0 disables)", type=float, default=0.0)
+parser.add_argument("--tag", help="Optional experiment tag appended to save path", type=str, default="")
+parser.add_argument(
+    "--multi_gpu",
+    help="Enable DataParallel across all visible GPUs (disabled by default)",
+    action="store_true",
+)
 parser.add_argument(
     "--data_file",
     help="Path to sprites .npy file",
@@ -126,6 +151,15 @@ timesteps = args['timesteps']
 data_file = args['data_file']
 device_arg = args['device']
 model_type = args['model_type'].lower()
+momentum = args['momentum']
+weight_decay = args['weight_decay']
+nesterov = args['nesterov']
+scheduler_name = args['scheduler']
+warmup_steps = args['warmup_steps']
+min_lr_ratio = args['min_lr_ratio']
+grad_clip = args['grad_clip']
+tag = args['tag'].strip()
+multi_gpu = args['multi_gpu']
 
 if time_step == -1:
     mode = 'normal'
@@ -163,6 +197,7 @@ config.DEVICE = device
 config.TIMESTEPS = timesteps
 config.CENTER = True
 config.STANDARDIZE = False
+config.GRAD_CLIP = grad_clip
 
 base_transform = transforms.Compose(
     [
@@ -206,6 +241,9 @@ elif config.mode == 'fixed_time':
         time_step,
     )
     print('Training at fixed diffusion time: {:d}'.format(config.time_step))
+
+if tag:
+    suffix = suffix[:-1] + '_{:s}/'.format(tag)
 
 
 # Create path to images and model save
@@ -280,7 +318,13 @@ if __name__ == '__main__':
         path_checkpoint = os.path.join(path_models, 'Model_{:d}'.format(offset))
         model = loader.load_model(model, path_checkpoint)
 
-    if model_type == 'unet' and torch.cuda.is_available() and config.DEVICE.startswith('cuda') and torch.cuda.device_count() > 1:
+    if (
+        multi_gpu
+        and model_type == 'unet'
+        and torch.cuda.is_available()
+        and config.DEVICE.startswith('cuda')
+        and torch.cuda.device_count() > 1
+    ):
         model = nn.DataParallel(model, device_ids=list(range(torch.cuda.device_count())))
     model.to(config.DEVICE)
 
@@ -293,11 +337,33 @@ if __name__ == '__main__':
 # In[] Training and saving
 if __name__ == '__main__':
     if config.OPTIM == 'Adam':
-        optimizer = torch.optim.Adam(model.parameters(), lr=config.LR)
+        optimizer = torch.optim.Adam(model.parameters(), lr=config.LR, weight_decay=weight_decay)
     elif config.OPTIM == 'SGD_Momentum':
-        optimizer = torch.optim.SGD(model.parameters(), lr=config.LR, momentum=0.95)
+        optimizer = torch.optim.SGD(
+            model.parameters(),
+            lr=config.LR,
+            momentum=momentum,
+            weight_decay=weight_decay,
+            nesterov=nesterov,
+        )
     else:
         raise ValueError('Unknown optimizer {:s}'.format(config.OPTIM))
+
+    scheduler = None
+    if scheduler_name == 'cosine':
+        warmup = max(0, warmup_steps)
+        total_steps = max(1, config.N_STEPS)
+
+        def lr_lambda(step):
+            if warmup > 0 and step < warmup:
+                return (step + 1) / warmup
+
+            progress = (step - warmup) / max(1, total_steps - warmup)
+            progress = min(max(progress, 0.0), 1.0)
+            cosine = 0.5 * (1.0 + math.cos(math.pi * progress))
+            return min_lr_ratio + (1.0 - min_lr_ratio) * cosine
+
+        scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, lr_lambda=lr_lambda, last_epoch=offset - 1)
 
     df = Diffusion.DiffusionConfig(
         n_steps=config.TIMESTEPS,
@@ -316,6 +382,7 @@ if __name__ == '__main__':
         model,
         trainloader,
         optimizer,
+        scheduler,
         config,
         df,
         loss_fn,

@@ -109,5 +109,5 @@ if __name__ == '__main__':
     times_save = np.hstack((times_save1, times_save2))
     
     offset = 0
-    Diffusion.train(model, train_loader, optimizer, config, df, 
+    Diffusion.train(model, train_loader, optimizer, None, config, df, 
                     loss_fn, sweeping, times_save, offset, suffix)
