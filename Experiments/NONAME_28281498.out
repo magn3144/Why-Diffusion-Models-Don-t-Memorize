@@ -1,0 +1,89 @@
+/zhome/5f/3/156515/.lsbatch/1777136832.28281498.shell: line 10: cd: /zhome/5f/3/156515/.lsbatch/src/Generation: No such file or directory
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 28281498: <NONAME> in cluster <dcc> Exited
+
+Job <NONAME> was submitted from host <n-62-20-9> by user <s204164> in cluster <dcc> at Sat Apr 25 19:07:12 2026
+Job was executed on host(s) <n-62-31-22>, in queue <hpc>, as user <s204164> in cluster <dcc> at Sat Apr 25 19:07:14 2026
+</zhome/5f/3/156515> was used as the home directory.
+</work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments> was used as the working directory.
+Started at Sat Apr 25 19:07:14 2026
+Terminated at Sat Apr 25 19:07:15 2026
+Results reported at Sat Apr 25 19:07:15 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/usr/bin/env bash
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+GEN_DIR="${SCRIPT_DIR}/src/Generation"
+
+NSAMPLES="${NSAMPLES:-100}"
+DEVICE="${DEVICE:-cuda:0}"
+
+cd "${GEN_DIR}"
+
+echo "Generating for CelebA32_1024_32_Adam_512_0.0001_index0"
+python generate.py \
+  -D CelebA \
+  -s 32 \
+  -n 1024 \
+  -W 32 \
+  -O Adam \
+  -B 512 \
+  -LR 0.0001 \
+  -i 0 \
+  -Ns "${NSAMPLES}" \
+  --device "${DEVICE}"
+
+echo "Generating for gmm_Sprites16_128_128_SGD_Momentum_128_0.0001_seed1"
+python generate.py \
+  -D Sprites \
+  -s 16 \
+  -n 128 \
+  -W 128 \
+  -O SGD_Momentum \
+  -B 128 \
+  -LR 0.0001 \
+  -Ns "${NSAMPLES}" \
+  --model_type gmm \
+  --seed 1 \
+  --device "${DEVICE}"
+
+echo "Generating for gmm_Sprites16_4096_128_Adam_512_0.0006_seed1"
+python generate.py \
+  -D Sprites \
+  -s 16 \
+  -n 4096 \
+  -W 128 \
+  -O Adam \
+  -B 512 \
+  -LR 0.0006 \
+  -Ns "${NSAMPLES}" \
+  --model_type gmm \
+  --seed 1 \
+
+(... more ...)
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   0.52 sec.
+    Max Memory :                                 1 MB
+    Average Memory :                             1.00 MB
+    Total Requested Memory :                     1024.00 MB
+    Delta Memory :                               1023.00 MB
+    Max Swap :                                   -
+    Max Processes :                              1
+    Max Threads :                                1
+    Run time :                                   1 sec.
+    Turnaround time :                            3 sec.
+
+The output (if any) is above this job summary.
+
