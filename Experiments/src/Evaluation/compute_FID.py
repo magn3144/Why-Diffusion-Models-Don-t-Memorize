@@ -4,12 +4,12 @@ import argparse
 import glob
 import os
 import shutil
-import subprocess
 import sys
 import warnings
 
 import torch
 import torchvision
+from pytorch_fid import fid_score
 from torch.utils.data import DataLoader
 from torchvision import transforms
 from tqdm import tqdm
@@ -50,6 +50,9 @@ def parse_arguments():
     parser.add_argument("--N2", help="Ending batch index", type=int, default=100)
     parser.add_argument("--batch_size_samples", help="Size of each sample batch", type=int, default=100)
     parser.add_argument("--device", help="Device to use (cuda:0, cpu)", type=str, default='cuda:0')
+    parser.add_argument("--fid_batch_size", help="Batch size for Inception feature extraction", type=int, default=50)
+    parser.add_argument("--fid_dims", help="Inception feature dimensionality", type=int, default=2048)
+    parser.add_argument("--fid_num_workers", help="DataLoader workers for FID image loading", type=int, default=None)
     parser.add_argument("--rebuild_stats", help="Recompute FID stats even if they already exist", action='store_true')
     parser.add_argument("--no_auto_stats", help="Do not auto-create missing FID stats", action='store_true')
 
@@ -188,34 +191,42 @@ def save_tensor_images(images, out_dir, start_index=0):
         torchvision.utils.save_image(x, os.path.join(out_dir, '{:d}.png'.format(start_index + idx)))
 
 
-def run_pytorch_fid(input_a, input_b, device):
-    """Run pytorch_fid and return stdout."""
-    cmd = [
-        sys.executable,
-        '-m',
-        'pytorch_fid',
-        input_a,
-        input_b,
-        '--device',
-        device,
-    ]
-    out = subprocess.check_output(cmd, text=True)
-    return out
+def get_fid_num_workers(num_workers):
+    """Match pytorch_fid worker selection when worker count is unspecified."""
+    if num_workers is not None:
+        return num_workers
+
+    try:
+        num_cpus = len(os.sched_getaffinity(0))
+    except AttributeError:
+        num_cpus = os.cpu_count()
+
+    return min(num_cpus, 8) if num_cpus is not None else 0
 
 
-def run_pytorch_fid_save_stats(image_dir, stats_path, device):
-    """Build reference statistics file using pytorch_fid."""
-    cmd = [
-        sys.executable,
-        '-m',
-        'pytorch_fid',
-        '--save-stats',
-        image_dir,
-        stats_path,
-        '--device',
-        device,
-    ]
-    subprocess.check_call(cmd)
+def run_pytorch_fid(input_a, input_b, device, batch_size_fid=50, dims=2048, num_workers=None):
+    """Run FID computation in-process via pytorch_fid API."""
+    workers = get_fid_num_workers(num_workers)
+    fid_value = fid_score.calculate_fid_given_paths(
+        paths=[input_a, input_b],
+        batch_size=batch_size_fid,
+        device=torch.device(device),
+        dims=dims,
+        num_workers=workers,
+    )
+    return float(fid_value)
+
+
+def run_pytorch_fid_save_stats(image_dir, stats_path, device, batch_size_fid=50, dims=2048, num_workers=None):
+    """Build reference statistics file in-process via pytorch_fid API."""
+    workers = get_fid_num_workers(num_workers)
+    fid_score.save_fid_stats(
+        paths=[image_dir, stats_path],
+        batch_size=batch_size_fid,
+        device=torch.device(device),
+        dims=dims,
+        num_workers=workers,
+    )
 
 
 def ensure_reference_stats(path_stats_testset, config, train_images, args):
@@ -236,24 +247,31 @@ def ensure_reference_stats(path_stats_testset, config, train_images, args):
     try:
         train_orig = detransform_images(train_images, config)
         save_tensor_images(train_orig, tmp_dir, start_index=0)
-        run_pytorch_fid_save_stats(tmp_dir, path_stats_testset, args.device)
+        run_pytorch_fid_save_stats(
+            tmp_dir,
+            path_stats_testset,
+            args.device,
+            batch_size_fid=args.fid_batch_size,
+            dims=args.fid_dims,
+            num_workers=args.fid_num_workers,
+        )
     finally:
         if os.path.exists(tmp_dir):
             shutil.rmtree(tmp_dir)
 
 
-def parse_fid_output(output):
-    """Parse numeric FID score from pytorch_fid output."""
-    for line in output.strip().splitlines()[::-1]:
-        if 'FID:' in line:
-            try:
-                return float(line.split('FID:')[-1].strip())
-            except ValueError:
-                continue
-    raise ValueError('Could not parse FID output: {:s}'.format(output))
-
-
-def compute_fid_for_checkpoint(tau, type_model, config, path_stats_testset, n1, n2, batch_size_samples, file_fid, device):
+def compute_fid_for_checkpoint(
+    tau,
+    type_model,
+    config,
+    path_stats_testset,
+    n1,
+    n2,
+    batch_size_samples,
+    file_fid,
+    device,
+    args,
+):
     """Compute FID for a specific training checkpoint."""
     file_img_gen = os.path.join(config.path_save, type_model, 'FID', '{:d}'.format(tau))
     os.makedirs(file_img_gen, exist_ok=True)
@@ -274,8 +292,14 @@ def compute_fid_for_checkpoint(tau, type_model, config, path_stats_testset, n1, 
         if valid_batches == 0:
             raise FileNotFoundError('No generated batches found for checkpoint {:d}'.format(tau))
 
-        p = run_pytorch_fid(path_stats_testset, file_img_gen, device)
-        fid = parse_fid_output(p)
+        fid = run_pytorch_fid(
+            path_stats_testset,
+            file_img_gen,
+            device,
+            batch_size_fid=args.fid_batch_size,
+            dims=args.fid_dims,
+            num_workers=args.fid_num_workers,
+        )
 
         with open(file_fid, 'a') as myfile:
             myfile.write('\n{:d}\t{:.3f}'.format(tau, fid))
@@ -321,6 +345,7 @@ def compute_fid_all_checkpoints(training_times, type_model, config, args, train_
             batch_size_samples=args.batch_size_samples,
             file_fid=file_fid,
             device=args.device,
+            args=args,
         )
         pbar.set_description('FID = {:.3f}'.format(fid))
 
@@ -341,9 +366,9 @@ def main():
 
     if args.dataset.lower() == 'celeba':
         train_images, _ = cfg.load_training_data(config, args.index)
-        train_images = dataset_to_tensor(train_images, config.n_images).to(config.DEVICE)
+        train_images = dataset_to_tensor(train_images, config.n_images)
     else:
-        train_images = load_sprites_training_data(config, args).to(config.DEVICE)
+        train_images = load_sprites_training_data(config, args)
 
     compute_fid_all_checkpoints(
         training_times=training_times,
