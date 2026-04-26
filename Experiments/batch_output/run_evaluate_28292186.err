@@ -1,0 +1,57 @@
+Loaded module: cuda/11.6
+  0%|          | 0/54 [00:00<?, ?it/s]Fmem = 0.00% ± 0.00:   0%|          | 0/54 [00:00<?, ?it/s]Fmem = 0.00% ± 0.00:   2%|▏         | 1/54 [00:00<00:06,  8.33it/s]Fmem = 0.00% ± 0.00:   2%|▏         | 1/54 [00:00<00:06,  8.33it/s]Fmem = 0.00% ± 0.00:   2%|▏         | 1/54 [00:00<00:06,  8.33it/s]Fmem = 0.00% ± 0.00:   6%|▌         | 3/54 [00:00<00:03, 13.39it/s]Fmem = 0.00% ± 0.00:   6%|▌         | 3/54 [00:00<00:03, 13.39it/s]Fmem = 0.00% ± 0.00:   6%|▌         | 3/54 [00:00<00:03, 13.39it/s]Fmem = 0.00% ± 0.00:   9%|▉         | 5/54 [00:00<00:03, 15.02it/s]Fmem = 0.00% ± 0.00:   9%|▉         | 5/54 [00:00<00:03, 15.02it/s]Fmem = 0.00% ± 0.00:   9%|▉         | 5/54 [00:00<00:03, 15.02it/s]Fmem = 0.00% ± 0.00:  13%|█▎        | 7/54 [00:00<00:02, 16.02it/s]Fmem = 0.00% ± 0.00:  13%|█▎        | 7/54 [00:00<00:02, 16.02it/s]Fmem = 0.00% ± 0.00:  13%|█▎        | 7/54 [00:00<00:02, 16.02it/s]Fmem = 0.00% ± 0.00:  17%|█▋        | 9/54 [00:00<00:02, 16.50it/s]Fmem = 0.20% ± 0.14:  17%|█▋        | 9/54 [00:00<00:02, 16.50it/s]Fmem = 0.79% ± 0.28:  17%|█▋        | 9/54 [00:00<00:02, 16.50it/s]Fmem = 0.79% ± 0.28:  20%|██        | 11/54 [00:00<00:02, 14.84it/s]Fmem = 4.23% ± 0.64:  20%|██        | 11/54 [00:00<00:02, 14.84it/s]Fmem = 7.31% ± 0.83:  20%|██        | 11/54 [00:00<00:02, 14.84it/s]Fmem = 7.31% ± 0.83:  24%|██▍       | 13/54 [00:00<00:02, 14.03it/s]Fmem = 11.40% ± 1.00:  24%|██▍       | 13/54 [00:00<00:02, 14.03it/s]Fmem = 18.74% ± 1.26:  24%|██▍       | 13/54 [00:01<00:02, 14.03it/s]Fmem = 18.74% ± 1.26:  28%|██▊       | 15/54 [00:01<00:02, 13.52it/s]Fmem = 19.91% ± 1.28:  28%|██▊       | 15/54 [00:01<00:02, 13.52it/s]Fmem = 24.61% ± 1.37:  28%|██▊       | 15/54 [00:01<00:02, 13.52it/s]Fmem = 24.61% ± 1.37:  31%|███▏      | 17/54 [00:01<00:02, 13.04it/s]Fmem = 33.18% ± 1.51:  31%|███▏      | 17/54 [00:01<00:02, 13.04it/s]Fmem = 33.86% ± 1.49:  31%|███▏      | 17/54 [00:01<00:02, 13.04it/s]Fmem = 33.86% ± 1.49:  35%|███▌      | 19/54 [00:01<00:02, 12.82it/s]Fmem = 38.78% ± 1.57:  35%|███▌      | 19/54 [00:01<00:02, 12.82it/s]Fmem = 42.24% ± 1.54:  35%|███▌      | 19/54 [00:01<00:02, 12.82it/s]Fmem = 42.24% ± 1.54:  39%|███▉      | 21/54 [00:01<00:02, 12.57it/s]Fmem = 43.81% ± 1.60:  39%|███▉      | 21/54 [00:01<00:02, 12.57it/s]Fmem = 47.38% ± 1.59:  39%|███▉      | 21/54 [00:01<00:02, 12.57it/s]Fmem = 47.38% ± 1.59:  43%|████▎     | 23/54 [00:01<00:02, 12.53it/s]Fmem = 46.83% ± 1.58:  43%|████▎     | 23/54 [00:01<00:02, 12.53it/s]Fmem = 52.67% ± 1.59:  43%|████▎     | 23/54 [00:01<00:02, 12.53it/s]Fmem = 52.67% ± 1.59:  46%|████▋     | 25/54 [00:01<00:02, 12.28it/s]Fmem = 52.17% ± 1.59:  46%|████▋     | 25/54 [00:01<00:02, 12.28it/s]Fmem = 51.52% ± 1.53:  46%|████▋     | 25/54 [00:02<00:02, 12.28it/s]Fmem = 51.52% ± 1.53:  50%|█████     | 27/54 [00:02<00:02, 12.07it/s]Fmem = 54.08% ± 1.61:  50%|█████     | 27/54 [00:02<00:02, 12.07it/s]Fmem = 54.54% ± 1.60:  50%|█████     | 27/54 [00:02<00:02, 12.07it/s]Fmem = 54.54% ± 1.60:  54%|█████▎    | 29/54 [00:02<00:02, 12.02it/s]Fmem = 55.53% ± 1.58:  54%|█████▎    | 29/54 [00:02<00:02, 12.02it/s]Fmem = 57.88% ± 1.56:  54%|█████▎    | 29/54 [00:02<00:02, 12.02it/s]Fmem = 57.88% ± 1.56:  57%|█████▋    | 31/54 [00:02<00:01, 12.05it/s]Fmem = 61.14% ± 1.48:  57%|█████▋    | 31/54 [00:02<00:01, 12.05it/s]Fmem = 65.06% ± 1.51:  57%|█████▋    | 31/54 [00:02<00:01, 12.05it/s]Fmem = 65.06% ± 1.51:  61%|██████    | 33/54 [00:02<00:01, 12.04it/s]Fmem = 64.95% ± 1.58:  61%|██████    | 33/54 [00:02<00:01, 12.04it/s]Fmem = 68.35% ± 1.43:  61%|██████    | 33/54 [00:02<00:01, 12.04it/s]Fmem = 68.35% ± 1.43:  65%|██████▍   | 35/54 [00:02<00:01, 12.09it/s]Fmem = 69.57% ± 1.49:  65%|██████▍   | 35/54 [00:02<00:01, 12.09it/s]Fmem = 67.24% ± 1.53:  65%|██████▍   | 35/54 [00:02<00:01, 12.09it/s]Fmem = 67.24% ± 1.53:  69%|██████▊   | 37/54 [00:02<00:01, 12.00it/s]Fmem = 71.12% ± 1.50:  69%|██████▊   | 37/54 [00:02<00:01, 12.00it/s]Fmem = 71.13% ± 1.38:  69%|██████▊   | 37/54 [00:03<00:01, 12.00it/s]Fmem = 71.13% ± 1.38:  72%|███████▏  | 39/54 [00:03<00:01, 12.02it/s]Fmem = 71.13% ± 1.38: 100%|██████████| 54/54 [00:03<00:00, 17.44it/s]
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/lib/python3.11/site-packages/pytorch_fid/__main__.py", line 3, in <module>
+    pytorch_fid.fid_score.main()
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/lib/python3.11/site-packages/pytorch_fid/fid_score.py", line 310, in main
+    save_fid_stats(args.path, args.batch_size, device, args.dims, num_workers)
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/lib/python3.11/site-packages/pytorch_fid/fid_score.py", line 278, in save_fid_stats
+    model = InceptionV3([block_idx]).to(device)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1152, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 802, in _apply
+    module._apply(fn)
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 802, in _apply
+    module._apply(fn)
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 802, in _apply
+    module._apply(fn)
+  [Previous line repeated 1 more time]
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 825, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1150, in convert
+    return t.to(device, dtype if t.is_floating_point() or t.is_complex() else None, non_blocking)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: CUDA error: CUDA-capable device(s) is/are busy or unavailable
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+Traceback (most recent call last):
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Evaluation/compute_FID.py", line 360, in <module>
+    main()
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Evaluation/compute_FID.py", line 348, in main
+    compute_fid_all_checkpoints(
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Evaluation/compute_FID.py", line 305, in compute_fid_all_checkpoints
+    ensure_reference_stats(path_stats_testset, config, train_images, args)
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Evaluation/compute_FID.py", line 239, in ensure_reference_stats
+    run_pytorch_fid_save_stats(tmp_dir, path_stats_testset, args.device)
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Evaluation/compute_FID.py", line 218, in run_pytorch_fid_save_stats
+    subprocess.check_call(cmd)
+  File "/zhome/5f/3/156515/.local/share/uv/python/cpython-3.11.14-linux-x86_64-gnu/lib/python3.11/subprocess.py", line 413, in check_call
+    raise CalledProcessError(retcode, cmd)
+subprocess.CalledProcessError: Command '['/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/bin/python', '-m', 'pytorch_fid', '--save-stats', '../../Saves/FID_ref/tmp_stats_1', '../../Saves/FID_ref/stats1.npz', '--device', 'cuda:0']' returned non-zero exit status 1.
+Traceback (most recent call last):
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Evaluation/evaluate_all_experiments.py", line 196, in <module>
+    main()
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Evaluation/evaluate_all_experiments.py", line 188, in main
+    run_command(cmd_fid)
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Evaluation/evaluate_all_experiments.py", line 112, in run_command
+    subprocess.check_call(cmd)
+  File "/zhome/5f/3/156515/.local/share/uv/python/cpython-3.11.14-linux-x86_64-gnu/lib/python3.11/subprocess.py", line 413, in check_call
+    raise CalledProcessError(retcode, cmd)
+subprocess.CalledProcessError: Command '['/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/bin/python', '/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Evaluation/compute_FID.py', '-D', 'CelebA', '-n', '1024', '-s', '32', '-LR', '0.0001', '-O', 'Adam', '-W', '32', '-B', '512', '-t', '-1', '--experiment_dir', 'CelebA32_1024_32_Adam_512_0.0001_index0', '--device', 'cuda:0', '-i', '0', '-istat', '1', '--N1', '0', '--N2', '10', '--batch_size_samples', '100', '--rebuild_stats']' returned non-zero exit status 1.

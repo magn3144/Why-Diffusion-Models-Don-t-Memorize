@@ -354,6 +354,12 @@ if __name__ == '__main__':
         warmup = max(0, warmup_steps)
         total_steps = max(1, config.N_STEPS)
 
+        # When resuming (last_epoch >= 0), PyTorch expects initial_lr in each
+        # optimizer param group. We only checkpoint model weights, so ensure it exists.
+        if offset > 0:
+            for param_group in optimizer.param_groups:
+                param_group.setdefault('initial_lr', param_group['lr'])
+
         def lr_lambda(step):
             if warmup > 0 and step < warmup:
                 return (step + 1) / warmup

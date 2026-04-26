@@ -13,11 +13,14 @@ import argparse
 from tqdm import tqdm
 import warnings
 import glob
+from torch.utils.data import DataLoader
+from torchvision import transforms
 
 # Add Utils to path
 sys.path.insert(1, '../Utils/')      # In case we run from Experiments/Evaluation
 import Diffusion as dm
 import cfg
+import sprites_dataset
 
 warnings.filterwarnings("ignore")
 
@@ -64,13 +67,18 @@ def parse_arguments():
     
     # Model configuration arguments
     parser.add_argument("-n", "--num", help="Number of training data", type=int, required=True)
-    parser.add_argument("-i", "--index", help="Index for the dataset (0 or 1)", type=int, required=True)
+    parser.add_argument("-i", "--index", help="Index for the dataset (used for CelebA)", type=int, default=0)
     parser.add_argument("-s", "--img_size", help="Size of the images to use", type=int, required=True)
     parser.add_argument("-LR", "--learning_rate", help="Learning rate for optimization", type=float, required=True)
     parser.add_argument("-O", "--optim", help="Optimisation type (SGD_Momentum or Adam)", type=str, required=True)
     parser.add_argument("-W", "--nbase", help="Number of base filters", type=int, required=True)
     parser.add_argument("-B", "--batch_size", help="Batch size used to train the model", type=int, required=True)
     parser.add_argument("-D", "--dataset", help="Dataset used to train the model", type=str, required=True)
+    parser.add_argument("--model_type", help="Backbone for Sprites experiments (unet or gmm)", type=str, default='unet')
+    parser.add_argument("--seed", help="Sprites subset seed", type=int, default=1)
+    parser.add_argument("--tag", help="Optional Sprites experiment tag", type=str, default='')
+    parser.add_argument("-t", "--time", help="Diffusion timestep (-1 for normal mode)", type=int, default=-1)
+    parser.add_argument("--experiment_dir", help="Optional exact folder name in Saves (overrides name construction)", type=str, default=None)
     
     # Analysis parameters
     parser.add_argument("-Ns", "--Nsamples", help="Number of sample batches to analyze", type=int, default=100)
@@ -80,18 +88,134 @@ def parse_arguments():
     
     return parser.parse_args()
 
+
+def dataset_to_tensor(data, n_images):
+    """Convert dataset/tensor inputs into a dense tensor of images."""
+    if isinstance(data, torch.Tensor):
+        return data[:n_images]
+
+    loader = DataLoader(data, batch_size=min(len(data), n_images), shuffle=False)
+    batch = next(iter(loader))
+    return batch[:n_images]
+
+
+def load_sprites_training_data(config, args):
+    """Load and normalize the Sprites training subset exactly as in training."""
+    base_transform = transforms.Compose(
+        [
+            transforms.ToTensor(),
+            transforms.Resize((args.img_size, args.img_size)),
+        ]
+    )
+    data_file = os.path.join(config.path_data, 'sprites_1788_16x16.npy')
+    dataset = sprites_dataset.SpritesDataset(
+        transform=base_transform,
+        img_file=data_file,
+        num_samples=args.num,
+        seed=args.seed,
+    )
+
+    train_images = torch.stack([dataset[i] for i in range(len(dataset))]).float()
+    mean = train_images.mean(dim=(0, 2, 3))
+    std = torch.ones_like(mean)
+
+    config.mean = mean
+    config.std = std
+    return (train_images - mean.view(1, -1, 1, 1)) / std.view(1, -1, 1, 1)
+
+
+def prepare_config(args):
+    """Prepare config object for CelebA or Sprites."""
+    dataset_key = args.dataset.lower()
+    if dataset_key == 'celeba':
+        config = cfg.load_config('CelebA')
+        config.IMG_SHAPE = (1, args.img_size, args.img_size)
+    elif dataset_key == 'sprites':
+        config = dm.TrainingConfig()
+        config.DATASET = 'Sprites'
+        config.path_save = '../../Saves/'
+        config.path_data = '../../Data/'
+        config.IMG_SHAPE = (3, args.img_size, args.img_size)
+        config.CENTER = True
+        config.STANDARDIZE = False
+        config.TIMESTEPS = 1000
+    else:
+        raise ValueError('Unsupported dataset: {:s}'.format(args.dataset))
+
+    config.n_images = args.num
+    config.BATCH_SIZE = min(args.batch_size, config.n_images)
+    config.OPTIM = args.optim
+    config.LR = args.learning_rate
+    config.DEVICE = args.device
+    return config
+
+
+def build_experiment_dir(args, config):
+    """Build experiment folder name in Saves/."""
+    if args.experiment_dir is not None and args.experiment_dir.strip() != '':
+        folder = args.experiment_dir.strip().strip('/')
+        return folder + '/'
+
+    dataset_key = args.dataset.lower()
+    if dataset_key == 'celeba':
+        return '{:s}{:d}_{:d}_{:d}_{:s}_{:d}_{:.4f}_index{:d}/'.format(
+            config.DATASET,
+            args.img_size,
+            config.n_images,
+            args.nbase,
+            config.OPTIM,
+            config.BATCH_SIZE,
+            config.LR,
+            args.index,
+        )
+
+    model_type = args.model_type.lower()
+    if args.time == -1:
+        folder = '{:s}_{:s}{:d}_{:d}_{:d}_{:s}_{:d}_{:.4f}_seed{:d}/'.format(
+            model_type,
+            config.DATASET,
+            args.img_size,
+            config.n_images,
+            args.nbase,
+            config.OPTIM,
+            config.BATCH_SIZE,
+            config.LR,
+            args.seed,
+        )
+    else:
+        folder = '{:s}_{:s}{:d}_{:d}_{:d}_{:s}_{:d}_{:.4f}_seed{:d}_t{:d}/'.format(
+            model_type,
+            config.DATASET,
+            args.img_size,
+            config.n_images,
+            args.nbase,
+            config.OPTIM,
+            config.BATCH_SIZE,
+            config.LR,
+            args.seed,
+            args.time,
+        )
+
+    tag = args.tag.strip()
+    if tag:
+        folder = folder[:-1] + '_{:s}/'.format(tag)
+    return folder
+
 def compute_fraction_mem(training_times, train_images, type_model, config, file_fc,
                              nsamples, sample_size, gap_threshold):
     """Compute fraction collapsed for all training times."""
     N = np.prod(config.IMG_SHAPE)
-    X = train_images.reshape(-1, N).float()
+    X = train_images.reshape(-1, N).float().to(config.DEVICE)
     
     pbar = tqdm(training_times)
     for tau in pbar:
         # Load generated images and compute k-nearest neighbors
         k = min(2, len(train_images))
+        if k < 2:
+            raise ValueError('Need at least 2 training images to compute gap ratio.')
+
         distances_tensor_all = torch.zeros(nsamples * sample_size, k)
-        knn_tensor_all = torch.zeros(nsamples * sample_size, k)
+        valid_count = 0
         
         for i in range(nsamples):
             path_save = config.path_save + type_model + 'Samples/' + '/{:d}/'.format(tau)
@@ -104,7 +228,8 @@ def compute_fraction_mem(training_times, train_images, type_model, config, file_
                 print(f"Warning: File not found: {file_a}")
                 continue
             
-            i1, i2 = i * sample_size, (i + 1) * sample_size
+            batch_n = images_a.shape[0]
+            i1, i2 = valid_count, valid_count + batch_n
             
             # Compute distances to training set
             s = images_a.reshape(-1, 1, N).to(config.DEVICE)
@@ -112,7 +237,15 @@ def compute_fraction_mem(training_times, train_images, type_model, config, file_
             knn = dist.topk(k, dim=1, largest=False)
             
             distances_tensor_all[i1:i2, :] = knn[0].cpu()
-            knn_tensor_all[i1:i2, :] = knn[1].cpu()
+            valid_count += batch_n
+
+        if valid_count == 0:
+            print(f"Warning: no generated samples found for checkpoint {tau}.")
+            with open(file_fc, "a") as myfile:
+                myfile.write(f"\n{tau:d}\t0.000\t0.00000\t0.00000\t0.00000")
+            continue
+
+        distances_tensor_all = distances_tensor_all[:valid_count, :]
         
         # Compute gap ratios
         gap_ratio = distances_tensor_all[:, 0] / distances_tensor_all[:, 1]
@@ -145,19 +278,10 @@ def main():
     print("Arguments:", args)
     
     # Load configuration
-    config = cfg.load_config(args.dataset)
-    config.IMG_SHAPE = (1, args.img_size, args.img_size)
-    config.n_images = args.num
-    config.BATCH_SIZE = min(args.batch_size, config.n_images)
-    config.OPTIM = args.optim
-    config.LR = args.learning_rate
-    config.DEVICE = args.device
+    config = prepare_config(args)
     
     # Model type string for paths
-    type_model = '{:s}{:d}_{:d}_{:d}_{:s}_{:d}_{:.4f}_index{:d}/'.format(
-        config.DATASET, args.img_size, config.n_images, args.nbase, 
-        config.OPTIM, config.BATCH_SIZE, config.LR, args.index
-    )
+    type_model = build_experiment_dir(args, config)
     
     # Create output directory and file
     path_file = config.path_save + type_model + 'Memorization/'
@@ -178,8 +302,11 @@ def main():
     print(f"Output file: {file_fc}")
     
     # Load training data
-    train_images, _ = cfg.load_training_data(config, args.index)
-    train_images = train_images[:config.n_images, :, :, :].to(config.DEVICE)
+    if args.dataset.lower() == 'celeba':
+        train_images, _ = cfg.load_training_data(config, args.index)
+        train_images = dataset_to_tensor(train_images, config.n_images).to(config.DEVICE)
+    else:
+        train_images = load_sprites_training_data(config, args).to(config.DEVICE)
     
     # Setup diffusion configuration
     df = dm.DiffusionConfig(

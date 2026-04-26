@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 ### General options
 #BSUB -q gpuv100
 #BSUB -J generate_all_samples
@@ -18,14 +18,12 @@ module load cuda/11.6
 
 source .venv/bin/activate
 
-#!/usr/bin/env bash
 set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-GEN_DIR="${SCRIPT_DIR}/src/Generation"
+GEN_DIR="../src/Generation"
 
-NSAMPLES="${NSAMPLES:-100}"
-DEVICE="${DEVICE:-cuda:0}"
+NSAMPLES="100"
+DEVICE="cuda:0"
 
 cd "${GEN_DIR}"
 
