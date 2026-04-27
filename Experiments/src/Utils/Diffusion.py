@@ -1,5 +1,6 @@
 import numpy as np
 import torch
+import os
 from tqdm import trange
 import matplotlib.pyplot as plt
 import Plot
@@ -284,8 +285,42 @@ def train_one_batch(X, model, optimizer, loss_fn,
     return loss.detach().item(), X_t
 
 
+@torch.no_grad()
+def evaluate_loss(loader, model, loss_fn,
+                  config=TrainingConfig(),
+                  df=DiffusionConfig()):
+    was_training = model.training
+    model.eval()
+
+    loss_sum = 0.0
+    n_samples = 0
+    for X in loader:
+        X = X.to(config.DEVICE)
+
+        if config.mode == 'normal':
+            ts = torch.randint(low=1, high=config.TIMESTEPS, size=(X.shape[0],), device=config.DEVICE)
+        elif config.mode == 'fixed_time':
+            ts = torch.ones((X.shape[0],), dtype=torch.long, device=config.DEVICE) * config.time_step
+        else:
+            raise ValueError(f'Unknown mode {config.mode}')
+
+        X_t, noise_t = forward_diffusion(df, X, ts, config)
+        pred = model(X_t.float(), ts)
+        batch_loss = loss_fn(noise_t, pred).item()
+        loss_sum += batch_loss * X.shape[0]
+        n_samples += X.shape[0]
+
+    if was_training:
+        model.train()
+
+    if n_samples == 0:
+        return float('nan')
+    return loss_sum / n_samples
+
+
 def train(model, trainloader, optimizer, scheduler, config, df, loss_fn,
-          sweep=1., times_save=[], offset=0, suffix='', generate=False):
+          sweep=1., times_save=[], offset=0, suffix='', generate=False,
+          testloader=None, eval_log_path=None):
     
     n_steps = offset    # Number of SGD steps
     k_steps = 100       # Number of steps before printing
@@ -305,6 +340,17 @@ def train(model, trainloader, optimizer, scheduler, config, df, loss_fn,
                 # Save model
                 p = config.path_save + suffix + 'Models/' + 'Model_{:d}'.format(n_steps)
                 torch.save(model.state_dict(), p)
+
+                if testloader is not None:
+                    test_loss = evaluate_loss(testloader, model, loss_fn, config, df)
+                    print(f'test_loss: {test_loss:.6f}, n_steps: {n_steps:d}')
+
+                    if eval_log_path is not None:
+                        write_header = not os.path.exists(eval_log_path)
+                        with open(eval_log_path, 'a', encoding='utf-8') as f:
+                            if write_header:
+                                f.write('step,test_loss,n_test_samples\n')
+                            f.write(f'{n_steps},{test_loss:.8f},{len(testloader.dataset)}\n')
                 
                 if generate:
                     # Sample a small batch and save it to check quality visually

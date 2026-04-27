@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import torch
 from torch import nn
-from torch.utils.data import DataLoader, Dataset
+from torch.utils.data import DataLoader, Dataset, Subset
 from torchvision import transforms
 
 sys.path.insert(1, '../Utils/')  # In case we run from Experiments/src/Training
@@ -133,6 +133,12 @@ parser.add_argument(
     type=str,
     default="../../Data/sprites_1788_16x16.npy",
 )
+parser.add_argument(
+    "--n_test_eval",
+    help="Number of test samples used to compute test loss at checkpoint times (0 = disable test evaluation)",
+    type=int,
+    default=0,
+)
 args = vars(parser.parse_args())
 print(args)
 
@@ -160,6 +166,7 @@ min_lr_ratio = args['min_lr_ratio']
 grad_clip = args['grad_clip']
 tag = args['tag'].strip()
 multi_gpu = args['multi_gpu']
+n_test_eval = args['n_test_eval']
 
 if time_step == -1:
     mode = 'normal'
@@ -173,6 +180,9 @@ else:
 
 if not os.path.exists(data_file):
     raise FileNotFoundError('Could not find sprites data file at {:s}'.format(data_file))
+
+if n_test_eval < 0:
+    raise ValueError('--n_test_eval must be >= 0.')
 
 sprites_raw = np.load(data_file, mmap_mode='r')
 n_total = sprites_raw.shape[0]
@@ -205,14 +215,37 @@ base_transform = transforms.Compose(
         transforms.Resize((size, size)),
     ]
 )
-base_dataset = sprites_dataset.SpritesDataset(
+full_dataset = sprites_dataset.SpritesDataset(
     transform=base_transform,
     img_file=data_file,
-    num_samples=n,
+    num_samples=None,
     seed=seed,
 )
 
-example = base_dataset[0]
+n_full = len(full_dataset)
+n_train_full = int(0.8 * n_full)
+n_test_full = n_full - n_train_full
+if n_train_full == 0 or n_test_full == 0:
+    raise ValueError('Need at least one sample in both train and test splits.')
+
+if n > n_train_full:
+    raise ValueError(
+        'Requested n={:d} training images but 80% train split only has {:d}.'.format(n, n_train_full)
+    )
+
+rng = np.random.RandomState(seed)
+perm = rng.permutation(n_full)
+train_indices = perm[:n_train_full]
+test_indices = perm[n_train_full:]
+
+train_subset_indices = train_indices[:n]
+test_eval_count = 0 if n_test_eval == 0 else min(n_test_eval, n_test_full)
+test_eval_indices = test_indices[:test_eval_count]
+
+base_train_dataset = Subset(full_dataset, train_subset_indices.tolist())
+base_test_dataset = Subset(full_dataset, test_eval_indices.tolist()) if test_eval_count > 0 else None
+
+example = base_train_dataset[0]
 config.IMG_SHAPE = tuple(example.shape)
 
 if config.mode == 'normal':
@@ -257,14 +290,16 @@ os.system('cp ../Utils/sprites_dataset.py {:s}'.format(path_models + '_sprites_d
 os.system('cp ../Utils/cfg.py {:s}'.format(path_models + '_cfg.py'))
 
 if config.CENTER:
-    mean, std = compute_channel_stats(base_dataset, batch_size=config.BATCH_SIZE)
+    mean, std = compute_channel_stats(base_train_dataset, batch_size=config.BATCH_SIZE)
     if not config.STANDARDIZE:
         std = torch.ones_like(std)
-    train_images = NormalizedDataset(base_dataset, mean, std)
+    train_images = NormalizedDataset(base_train_dataset, mean, std)
+    test_images = NormalizedDataset(base_test_dataset, mean, std) if base_test_dataset is not None else None
 else:
     mean = torch.zeros(config.IMG_SHAPE[0])
     std = torch.ones(config.IMG_SHAPE[0])
-    train_images = base_dataset
+    train_images = base_train_dataset
+    test_images = base_test_dataset
 
 config.mean = mean
 config.std = std
@@ -276,6 +311,23 @@ if __name__ == '__main__':
         batch_size=config.BATCH_SIZE,
         shuffle=True,
     )
+    testloader = None
+    if test_images is not None:
+        testloader = torch.utils.data.DataLoader(
+            test_images,
+            batch_size=config.BATCH_SIZE,
+            shuffle=False,
+        )
+
+print(
+    'Data split: total={:d}, train_pool={:d}, test_pool={:d}, train_used={:d}, test_eval={:d}'.format(
+        n_full,
+        n_train_full,
+        n_test_full,
+        len(train_images),
+        0 if test_images is None else len(test_images),
+    )
+)
 
 
 # In[] Plot one random batch of training images
@@ -397,4 +449,6 @@ if __name__ == '__main__':
         offset,
         suffix,
         generate=True,
+        testloader=testloader,
+        eval_log_path=os.path.join(path_models, 'test_loss_checkpoints.csv'),
     )
