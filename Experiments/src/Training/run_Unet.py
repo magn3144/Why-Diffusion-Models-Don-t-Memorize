@@ -26,6 +26,7 @@ parser.add_argument("-LR", "--learning_rate", help="Learning rate for optimizati
 parser.add_argument("-O", "--optim", help="Optimisation type (SGD_Momentum or Adam)", type=str)
 parser.add_argument("-W", "--nbase", help="Number of base filters", type=str)
 parser.add_argument("-t", "--time", help="Diffusion timestep", type=int)
+parser.add_argument("--n_steps", help="Number of optimization steps", type=int, default=int(2e6))
 args = vars(parser.parse_args())
 print(args)
 
@@ -37,6 +38,7 @@ lr = args['learning_rate']
 optim = args['optim']
 n_base = int(args['nbase'])
 time_step = args['time']
+n_steps = args['n_steps']
 if time_step == -1:
     mode = 'normal'
 else:
@@ -50,6 +52,7 @@ config.n_images = n
 config.BATCH_SIZE = min(512, n)
 config.OPTIM = optim
 config.LR = lr
+config.N_STEPS = n_steps
 config.mode = mode
 config.time_step = time_step
 
