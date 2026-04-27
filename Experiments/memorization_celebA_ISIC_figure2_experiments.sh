@@ -19,12 +19,12 @@ module load cuda/11.6
 source .venv/bin/activate
 cd src/Training
 
-python run_Unet.py -n 512 -i 0 -s 32 -LR 0.0001 -O Adam -W 32 -t -1 --n_steps 200000 &
-python run_Unet.py -n 1024 -i 0 -s 32 -LR 0.0001 -O Adam -W 32 -t -1 --n_steps 200000 &
-python run_Unet.py -n 2048 -i 0 -s 32 -LR 0.0001 -O Adam -W 32 -t -1 --n_steps 200000 &
-python run_Unet.py -n 4096 -i 0 -s 32 -LR 0.0001 -O Adam -W 32 -t -1 --n_steps 200000 &
-python run_ISIC.py -n 512 -s 32 -LR 0.0001 -O Adam -W 32 -t -1 --n_steps 200000 &
-python run_ISIC.py -n 1024 -s 32 -LR 0.0001 -O Adam -W 32 -t -1 --n_steps 200000 &
-python run_ISIC.py -n 2048 -s 32 -LR 0.0001 -O Adam -W 32 -t -1 --n_steps 200000 &
-python run_ISIC.py -n 4096 -s 32 -LR 0.0001 -O Adam -W 32 -t -1 --n_steps 200000 &
+python run_Unet.py -n 512 -i 0 -s 16 -LR 0.0001 -O Adam -W 32 -t -1 --n_steps 200000 &
+python run_Unet.py -n 1024 -i 0 -s 16 -LR 0.0001 -O Adam -W 32 -t -1 --n_steps 200000 &
+python run_Unet.py -n 2048 -i 0 -s 16 -LR 0.0001 -O Adam -W 32 -t -1 --n_steps 200000 &
+python run_Unet.py -n 4096 -i 0 -s 16 -LR 0.0001 -O Adam -W 32 -t -1 --n_steps 200000 &
+python run_ISIC.py -n 512 -s 16 -LR 0.0001 -O Adam -W 32 -t -1 --n_steps 200000 &
+python run_ISIC.py -n 1024 -s 16 -LR 0.0001 -O Adam -W 32 -t -1 --n_steps 200000 &
+python run_ISIC.py -n 2048 -s 16 -LR 0.0001 -O Adam -W 32 -t -1 --n_steps 200000 &
+python run_ISIC.py -n 4096 -s 16 -LR 0.0001 -O Adam -W 32 -t -1 --n_steps 200000 &
 wait
