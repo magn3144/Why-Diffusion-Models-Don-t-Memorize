@@ -80,6 +80,13 @@ def infer_sample_batches(exp_path):
     return 0
 
 
+def has_existing_metrics(exp_path, id_stat):
+    """Check whether both memorization and FID outputs already exist for an experiment."""
+    fmem_file = os.path.join(exp_path, 'Memorization', 'fraction_memorized.txt')
+    fid_file = os.path.join(exp_path, 'FID', 'FID_{:d}.txt'.format(id_stat))
+    return os.path.isfile(fmem_file) and os.path.isfile(fid_file)
+
+
 def build_common_cmd(py_exec, script, meta, exp_name, device):
     """Build common CLI args used by both metric scripts."""
     cmd = [
@@ -148,6 +155,11 @@ def main():
         exp_path = os.path.join(args.saves_dir, exp_name)
         models_dir = os.path.join(exp_path, 'Models')
         if not os.path.isdir(models_dir):
+            continue
+
+        if has_existing_metrics(exp_path, args.id_stat):
+            print('Skipping (FID and fmem already exist):', exp_name)
+            skipped += 1
             continue
 
         meta = parse_experiment_name(exp_name)

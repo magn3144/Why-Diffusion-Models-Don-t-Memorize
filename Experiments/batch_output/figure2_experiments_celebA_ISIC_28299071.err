@@ -1,0 +1,73 @@
+Loaded module: cuda/11.6
+Traceback (most recent call last):
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Training/run_Unet.py", line 91, in <module>
+    train_images, testset = cfg.load_training_data(config, index, loadtest=False)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Training/../Utils/cfg.py", line 51, in load_training_data
+Traceback (most recent call last):
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Training/run_Unet.py", line 91, in <module>
+Traceback (most recent call last):
+    all_images = torch.load(config.path_data + '{:s}{:d}.pt'.format(config.DATASET, size))
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Training/run_Unet.py", line 91, in <module>
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    train_images, testset = cfg.load_training_data(config, index, loadtest=False)
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/lib/python3.11/site-packages/torch/serialization.py", line 998, in load
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    train_images, testset = cfg.load_training_data(config, index, loadtest=False)
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Training/../Utils/cfg.py", line 51, in load_training_data
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Training/../Utils/cfg.py", line 51, in load_training_data
+Traceback (most recent call last):
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+    all_images = torch.load(config.path_data + '{:s}{:d}.pt'.format(config.DATASET, size))
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Training/run_Unet.py", line 91, in <module>
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/lib/python3.11/site-packages/torch/serialization.py", line 445, in _open_file_like
+    all_images = torch.load(config.path_data + '{:s}{:d}.pt'.format(config.DATASET, size))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    train_images, testset = cfg.load_training_data(config, index, loadtest=False)
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/lib/python3.11/site-packages/torch/serialization.py", line 998, in load
+    return _open_file(name_or_buffer, mode)
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/lib/python3.11/site-packages/torch/serialization.py", line 998, in load
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Training/../Utils/cfg.py", line 51, in load_training_data
+    with _open_file_like(f, 'rb') as opened_file:
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/lib/python3.11/site-packages/torch/serialization.py", line 426, in __init__
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+    all_images = torch.load(config.path_data + '{:s}{:d}.pt'.format(config.DATASET, size))
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/lib/python3.11/site-packages/torch/serialization.py", line 445, in _open_file_like
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/lib/python3.11/site-packages/torch/serialization.py", line 445, in _open_file_like
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    super().__init__(open(name, mode))
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/lib/python3.11/site-packages/torch/serialization.py", line 998, in load
+    return _open_file(name_or_buffer, mode)
+                     ^^^^^^^^^^^^^^^^
+    return _open_file(name_or_buffer, mode)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '../../Data/CelebA/CelebA16.pt'
+    with _open_file_like(f, 'rb') as opened_file:
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/lib/python3.11/site-packages/torch/serialization.py", line 426, in __init__
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/lib/python3.11/site-packages/torch/serialization.py", line 426, in __init__
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/lib/python3.11/site-packages/torch/serialization.py", line 445, in _open_file_like
+    super().__init__(open(name, mode))
+    super().__init__(open(name, mode))
+                     ^^^^^^^^^^^^^^^^
+                     ^^^^^^^^^^^^^^^^
+    return _open_file(name_or_buffer, mode)
+FileNotFoundError: [Errno 2] No such file or directory: '../../Data/CelebA/CelebA16.pt'
+FileNotFoundError: [Errno 2] No such file or directory: '../../Data/CelebA/CelebA16.pt'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/lib/python3.11/site-packages/torch/serialization.py", line 426, in __init__
+    super().__init__(open(name, mode))
+                     ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '../../Data/CelebA/CelebA16.pt'
+  0%|          | 0/200000 [00:00<?, ?it/s]  0%|          | 0/200000 [00:00<?, ?it/s]  0%|          | 0/200000 [00:00<?, ?it/s]  0%|          | 0/200000 [00:00<?, ?it/s]Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers). Got range [-1022.0128..870.00104].
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers). Got range [-861.5381..904.3753].
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers). Got range [-968.4197..929.41077].
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers). Got range [-756.03204..987.3232].
