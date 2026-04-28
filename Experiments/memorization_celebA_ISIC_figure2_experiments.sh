@@ -6,7 +6,7 @@
 #BSUB -gpu "num=1:mode=exclusive_process:mps=yes"
 #BSUB -W 24:00
 #BSUB -R "rusage[mem=20GB]"
-#BSUB -u s204164@dtu.dk
+##BSUB -u s204164@dtu.dk
 #BSUB -B
 #BSUB -N
 #BSUB -o batch_output/figure2_experiments_celebA_ISIC_%J.out
