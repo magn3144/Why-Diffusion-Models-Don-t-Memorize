@@ -314,44 +314,6 @@ def main():
     if args.title:
         ax_fid.set_title(args.title, fontsize=14)
 
-    has_any_dataset_size = any(run["dataset_size"] is not None for run in runs)
-    if (not args.no_inset) and has_any_dataset_size:
-        inset = ax_fid.inset_axes([0.43, 0.61, 0.4, 0.37])
-        inset_plotted = False
-        for idx, run in enumerate(runs):
-            if run["dataset_size"] is None:
-                continue
-
-            max_mem = np.max(run["fmem"])
-            if max_mem <= 0:
-                continue
-
-            color = cmap(idx % 10)
-            tau_scaled = run["tau_mem"] / float(run["dataset_size"])
-            fmem_norm = run["fmem"] / max_mem
-            inset.plot(tau_scaled, fmem_norm, color=color, lw=2.0, ls="--")
-
-            if run["fmem_lower"] is not None and run["fmem_upper"] is not None:
-                inset.fill_between(
-                    tau_scaled,
-                    run["fmem_lower"] / max_mem,
-                    run["fmem_upper"] / max_mem,
-                    color=color,
-                    alpha=0.12,
-                    linewidth=0,
-                )
-            inset_plotted = True
-
-        if inset_plotted:
-            inset.set_xscale("log")
-            inset.set_ylim(0.0, 1.0)
-            inset.set_xlabel(r"$\tau/n$", fontsize=11)
-            inset.set_ylabel(r"$f_{\mathrm{mem}}(\tau)/f_{\mathrm{mem}}(\tau_{\max})$", fontsize=11)
-            inset.tick_params(axis="both", labelsize=8)
-            inset.grid(alpha=0.2)
-        else:
-            inset.remove()
-
     fig.tight_layout()
 
     output_path = args.output
