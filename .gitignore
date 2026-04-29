@@ -1,6 +1,8 @@
 *script_run.slurm
 .DS_Store
-Experiments/Data
+Experiments/Data/*
+!Experiments/Data/sprites_1788_16x16.npy
+!Experiments/Data/sprite_labels_nc_1788_16x16.npy
 Experiments/Saves/**
 Experiments/src/Plots/*
 Experiments/src/Analysis/*
