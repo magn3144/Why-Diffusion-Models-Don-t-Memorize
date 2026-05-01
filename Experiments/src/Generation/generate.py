@@ -150,7 +150,7 @@ parser.add_argument('-W', '--nbase', help='Number of base filters', type=str, de
 parser.add_argument('-t', '--time', help='Diffusion timestep', type=int, default=-1)
 parser.add_argument('-B', '--batch_size', type=int, help='Batch size used to train the model', default=None)
 parser.add_argument('-D', '--dataset', type=str, help='Dataset used to train the model (CelebA, ISIC, Sprites, or GMM8).', default=None)
-parser.add_argument('-Ns', '--Nsamples', type=int, help='Number of samples to generate (should be multiple of 100).', default=None)
+parser.add_argument('-Ns', '--Nsamples', type=int, help='Number of samples to generate (should be multiple of 100).', default=100)
 parser.add_argument('--model_type', type=str, help='Model backbone for Sprites (unet or gmm).', default='unet')
 parser.add_argument('--seed', type=int, help='Seed used to sample the sprites subset or ISIC.', default=1)
 parser.add_argument('--tag', type=str, help='Optional tag appended to the sprites experiment folder.', default='')

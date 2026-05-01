@@ -13,7 +13,9 @@ import argparse
 from tqdm import tqdm
 import warnings
 import glob
+from PIL import Image
 from torch.utils.data import DataLoader
+from torch.utils.data import Dataset
 from torchvision import transforms
 
 # Add Utils to path
@@ -23,6 +25,68 @@ import cfg
 import sprites_dataset
 
 warnings.filterwarnings("ignore")
+
+
+class ImagePathDataset(Dataset):
+    def __init__(self, image_paths, transform=None):
+        self.image_paths = image_paths
+        self.transform = transform
+
+    def __len__(self):
+        return len(self.image_paths)
+
+    def __getitem__(self, idx):
+        image = Image.open(self.image_paths[idx]).convert("RGB")
+        if self.transform is not None:
+            image = self.transform(image)
+        return image
+
+
+class NormalizedDataset(Dataset):
+    def __init__(self, base_dataset, mean, std):
+        self.base_dataset = base_dataset
+        self.mean = mean.view(-1, 1, 1)
+        self.std = std.view(-1, 1, 1)
+
+    def __len__(self):
+        return len(self.base_dataset)
+
+    def __getitem__(self, idx):
+        image = self.base_dataset[idx]
+        return (image - self.mean) / self.std
+
+
+def find_image_files(data_root):
+    patterns = ["*.jpg", "*.jpeg", "*.png"]
+    files = []
+    for pat in patterns:
+        files.extend(glob.glob(os.path.join(data_root, pat)))
+    return sorted(files)
+
+
+def compute_channel_stats(dataset, batch_size, num_workers=2):
+    loader_local = DataLoader(dataset, batch_size=batch_size, shuffle=False, num_workers=num_workers)
+    channel_sum = None
+    channel_squared_sum = None
+    n_pixels = 0
+
+    for images in loader_local:
+        images = images.float()
+        b, c, h, w = images.shape
+        images = images.view(b, c, -1)
+
+        if channel_sum is None:
+            channel_sum = torch.zeros(c, dtype=images.dtype)
+            channel_squared_sum = torch.zeros(c, dtype=images.dtype)
+
+        channel_sum += images.sum(dim=(0, 2))
+        channel_squared_sum += (images ** 2).sum(dim=(0, 2))
+        n_pixels += b * h * w
+
+    mean = channel_sum / n_pixels
+    var = torch.clamp(channel_squared_sum / n_pixels - mean ** 2, min=1e-12)
+    std = torch.sqrt(var)
+    return mean, std
 
 
 def bootstrap_mean_se(data, threshold, n_bootstrap=1000, random_state=None):
@@ -79,6 +143,13 @@ def parse_arguments():
     parser.add_argument("--tag", help="Optional Sprites experiment tag", type=str, default='')
     parser.add_argument("-t", "--time", help="Diffusion timestep (-1 for normal mode)", type=int, default=-1)
     parser.add_argument("--experiment_dir", help="Optional exact folder name in Saves (overrides name construction)", type=str, default=None)
+    parser.add_argument(
+        "--isic_data_root",
+        type=str,
+        default="../../Data/ISIC_2019_Training_Input/ISIC_2019_Training_Input",
+        help="Path to extracted ISIC image directory.",
+    )
+    parser.add_argument("--num_workers", help="DataLoader workers for ISIC stats", type=int, default=2)
     
     # Analysis parameters
     parser.add_argument("-Ns", "--Nsamples", help="Number of sample batches to analyze", type=int, default=100)
@@ -124,6 +195,40 @@ def load_sprites_training_data(config, args):
     return (train_images - mean.view(1, -1, 1, 1)) / std.view(1, -1, 1, 1)
 
 
+def load_isic_training_data(config, args):
+    """Load and normalize the ISIC training subset."""
+    image_paths = find_image_files(args.isic_data_root)
+    if len(image_paths) == 0:
+        raise RuntimeError("No ISIC images found in {:s}".format(args.isic_data_root))
+    if args.num > len(image_paths):
+        raise ValueError("Requested n={:d} but ISIC has {:d} images.".format(args.num, len(image_paths)))
+
+    rng = np.random.default_rng(args.seed)
+    indices = rng.choice(len(image_paths), size=args.num, replace=False)
+    indices = np.sort(indices)
+    selected_paths = [image_paths[i] for i in indices]
+
+    base_transform = transforms.Compose(
+        [
+            transforms.Resize((args.img_size, args.img_size)),
+            transforms.ToTensor(),
+        ]
+    )
+    base_dataset = ImagePathDataset(selected_paths, transform=base_transform)
+
+    example = base_dataset[0]
+    config.IMG_SHAPE = tuple(example.shape)
+
+    mean, std = compute_channel_stats(base_dataset, batch_size=config.BATCH_SIZE, num_workers=args.num_workers)
+    std = torch.ones_like(std)
+    config.mean = mean
+    config.std = std
+
+    train_norm = NormalizedDataset(base_dataset, mean, std)
+    train_images = torch.stack([train_norm[i] for i in range(len(train_norm))]).float()
+    return train_images
+
+
 def prepare_config(args):
     """Prepare config object for CelebA or Sprites."""
     dataset_key = args.dataset.lower()
@@ -133,6 +238,15 @@ def prepare_config(args):
     elif dataset_key == 'sprites':
         config = dm.TrainingConfig()
         config.DATASET = 'Sprites'
+        config.path_save = '../../Saves/'
+        config.path_data = '../../Data/'
+        config.IMG_SHAPE = (3, args.img_size, args.img_size)
+        config.CENTER = True
+        config.STANDARDIZE = False
+        config.TIMESTEPS = 1000
+    elif dataset_key == 'isic':
+        config = dm.TrainingConfig()
+        config.DATASET = 'ISIC'
         config.path_save = '../../Saves/'
         config.path_data = '../../Data/'
         config.IMG_SHAPE = (3, args.img_size, args.img_size)
@@ -168,6 +282,34 @@ def build_experiment_dir(args, config):
             config.LR,
             args.index,
         )
+
+    if dataset_key == 'isic':
+        if args.time == -1:
+            folder = 'ISIC{:d}_{:d}_{:d}_{:s}_{:d}_{:.4f}_seed{:d}/'.format(
+                args.img_size,
+                config.n_images,
+                args.nbase,
+                config.OPTIM,
+                config.BATCH_SIZE,
+                config.LR,
+                args.seed,
+            )
+        else:
+            folder = 'ISIC{:d}_{:d}_{:d}_{:s}_{:d}_{:.4f}_seed{:d}_t{:d}/'.format(
+                args.img_size,
+                config.n_images,
+                args.nbase,
+                config.OPTIM,
+                config.BATCH_SIZE,
+                config.LR,
+                args.seed,
+                args.time,
+            )
+
+        tag = args.tag.strip()
+        if tag:
+            folder = folder[:-1] + '_{:s}/'.format(tag)
+        return folder
 
     model_type = args.model_type.lower()
     if args.time == -1:
@@ -305,8 +447,10 @@ def main():
     if args.dataset.lower() == 'celeba':
         train_images, _ = cfg.load_training_data(config, args.index)
         train_images = dataset_to_tensor(train_images, config.n_images).to(config.DEVICE)
-    else:
+    elif args.dataset.lower() == 'sprites':
         train_images = load_sprites_training_data(config, args).to(config.DEVICE)
+    else:
+        train_images = load_isic_training_data(config, args).to(config.DEVICE)
     
     # Setup diffusion configuration
     df = dm.DiffusionConfig(
