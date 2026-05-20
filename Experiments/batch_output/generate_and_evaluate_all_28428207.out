@@ -1,0 +1,1259 @@
+Thu May 14 10:14:01 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.159.03             Driver Version: 580.159.03     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  Tesla V100-SXM2-32GB           On  |   00000000:15:00.0 Off |                    0 |
+| N/A   44C    P0             49W /  300W |       0MiB /  32768MiB |      0%   E. Process |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+/appl/cuda/11.6.0/samples/bin/x86_64/linux/release/deviceQuery Starting...
+
+ CUDA Device Query (Runtime API) version (CUDART static linking)
+
+Detected 1 CUDA Capable device(s)
+
+Device 0: "Tesla V100-SXM2-32GB"
+  CUDA Driver Version / Runtime Version          13.0 / 11.6
+  CUDA Capability Major/Minor version number:    7.0
+  Total amount of global memory:                 32494 MBytes (34072559616 bytes)
+  (080) Multiprocessors, (064) CUDA Cores/MP:    5120 CUDA Cores
+  GPU Max Clock rate:                            1530 MHz (1.53 GHz)
+  Memory Clock rate:                             877 Mhz
+  Memory Bus Width:                              4096-bit
+  L2 Cache Size:                                 6291456 bytes
+  Maximum Texture Dimension Size (x,y,z)         1D=(131072), 2D=(131072, 65536), 3D=(16384, 16384, 16384)
+  Maximum Layered 1D Texture Size, (num) layers  1D=(32768), 2048 layers
+  Maximum Layered 2D Texture Size, (num) layers  2D=(32768, 32768), 2048 layers
+  Total amount of constant memory:               65536 bytes
+  Total amount of shared memory per block:       49152 bytes
+  Total shared memory per multiprocessor:        98304 bytes
+  Total number of registers available per block: 65536
+  Warp size:                                     32
+  Maximum number of threads per multiprocessor:  2048
+  Maximum number of threads per block:           1024
+  Max dimension size of a thread block (x,y,z): (1024, 1024, 64)
+  Max dimension size of a grid size    (x,y,z): (2147483647, 65535, 65535)
+  Maximum memory pitch:                          2147483647 bytes
+  Texture alignment:                             512 bytes
+  Concurrent copy and kernel execution:          Yes with 5 copy engine(s)
+  Run time limit on kernels:                     No
+  Integrated GPU sharing Host Memory:            No
+  Support host page-locked memory mapping:       Yes
+  Alignment requirement for Surfaces:            Yes
+  Device has ECC support:                        Enabled
+  Device supports Unified Addressing (UVA):      Yes
+  Device supports Managed Memory:                Yes
+  Device supports Compute Preemption:            Yes
+  Supports Cooperative Kernel Launch:            Yes
+  Supports MultiDevice Co-op Kernel Launch:      Yes
+  Device PCI Domain ID / Bus ID / location ID:   0 / 21 / 0
+  Compute Mode:
+     < Exclusive Process (many threads in one process is able to use ::cudaSetDevice() with this device) >
+
+deviceQuery, CUDA Driver = CUDART, CUDA Driver Version = 13.0, CUDA Runtime Version = 11.6, NumDevs = 1
+Result = PASS
+Namespace(num=4096, index=0, img_size=16, learning_rate=0.0006, optim='Adam', nbase='128', time=-1, batch_size=1, dataset='GMM8', Nsamples=100, model_type='gmm8', seed=1, tag='', large_batch=512, generate_all_missing=False, saves_dir='../../Saves', timesteps=None, device='cuda:0')
+Generating 100 samples
+Namespace(num=2048, index=0, img_size=16, learning_rate=0.003, optim='SGD_Momentum', nbase='32', time=-1, batch_size=512, dataset='Sprites', Nsamples=100, model_type='unet', seed=1, tag='sgdcos_lr3e-3_warm10k', large_batch=512, generate_all_missing=False, saves_dir='../../Saves', timesteps=None, device='cuda:0')
+Generating 100 samples
+Training time = 0 (0/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_0
+Sample 0/1
+Training time = 250 (1/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_250
+Sample 0/1
+Training time = 500 (2/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_500
+Sample 0/1
+Training time = 750 (3/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_750
+Sample 0/1
+Training time = 1250 (4/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_1250
+Sample 0/1
+Training time = 1750 (5/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_1750
+Sample 0/1
+Training time = 2750 (6/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_2750
+Sample 0/1
+Training time = 4250 (7/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_4250
+Sample 0/1
+Training time = 6500 (8/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_6500
+Sample 0/1
+Training time = 10000 (9/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_10000
+Sample 0/1
+Training time = 15000 (10/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_15000
+Sample 0/1
+Training time = 20000 (11/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_20000
+Sample 0/1
+Training time = 25000 (12/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_25000
+Sample 0/1
+Training time = 30000 (13/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_30000
+Sample 0/1
+Training time = 35000 (14/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_35000
+Sample 0/1
+Training time = 40000 (15/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_40000
+Sample 0/1
+Training time = 45000 (16/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_45000
+Sample 0/1
+Training time = 50000 (17/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_50000
+Sample 0/1
+Training time = 55000 (18/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_55000
+Sample 0/1
+Training time = 60000 (19/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_60000
+Sample 0/1
+Training time = 65000 (20/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_65000
+Sample 0/1
+Training time = 70000 (21/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_70000
+Sample 0/1
+Training time = 75000 (22/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_75000
+Sample 0/1
+Training time = 80000 (23/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_80000
+Sample 0/1
+Training time = 85000 (24/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_85000
+Sample 0/1
+Training time = 90000 (25/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_90000
+Sample 0/1
+Training time = 95000 (26/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_95000
+Sample 0/1
+Training time = 100000 (27/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_100000
+Sample 0/1
+Training time = 105000 (28/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_105000
+Sample 0/1
+Training time = 110000 (29/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_110000
+Sample 0/1
+Training time = 115000 (30/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_115000
+Sample 0/1
+Training time = 125000 (31/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_125000
+Sample 0/1
+Training time = 130000 (32/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_130000
+Sample 0/1
+Training time = 135000 (33/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_135000
+Sample 0/1
+Training time = 145000 (34/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_145000
+Sample 0/1
+Training time = 155000 (35/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_155000
+Sample 0/1
+Training time = 160000 (36/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_160000
+Sample 0/1
+Training time = 170000 (37/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_170000
+Sample 0/1
+Training time = 180000 (38/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_180000
+Sample 0/1
+Training time = 190000 (39/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_190000
+Sample 0/1
+Training time = 200000 (40/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_200000
+Sample 0/1
+Training time = 210000 (41/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_210000
+Sample 0/1
+Training time = 220000 (42/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_220000
+Sample 0/1
+Training time = 230000 (43/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_230000
+Sample 0/1
+Training time = 245000 (44/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_245000
+Sample 0/1
+Training time = 260000 (45/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_260000
+Sample 0/1
+Training time = 270000 (46/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_270000
+Sample 0/1
+Training time = 285000 (47/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_285000
+Sample 0/1
+Training time = 300000 (48/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_300000
+Sample 0/1
+Training time = 320000 (49/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_320000
+Sample 0/1
+Training time = 335000 (50/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_335000
+Sample 0/1
+Training time = 355000 (51/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_355000
+Sample 0/1
+Training time = 370000 (52/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_370000
+Sample 0/1
+Training time = 390000 (53/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_390000
+Sample 0/1
+Training time = 410000 (54/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_410000
+Sample 0/1
+Training time = 435000 (55/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_435000
+Sample 0/1
+Training time = 460000 (56/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_460000
+Sample 0/1
+Training time = 480000 (57/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_480000
+Sample 0/1
+Training time = 510000 (58/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_510000
+Sample 0/1
+Training time = 535000 (59/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_535000
+Sample 0/1
+Training time = 565000 (60/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_565000
+Sample 0/1
+Training time = 595000 (61/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_595000
+Sample 0/1
+Training time = 625000 (62/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_625000
+Sample 0/1
+Training time = 660000 (63/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_660000
+Sample 0/1
+Training time = 695000 (64/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_695000
+Sample 0/1
+Training time = 730000 (65/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_730000
+Sample 0/1
+Training time = 770000 (66/67)
+Loading initial state at ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_770000
+Sample 0/1
+Done!
+Namespace(num=4096, index=0, img_size=16, learning_rate=0.003, optim='SGD_Momentum', nbase='32', time=-1, batch_size=512, dataset='Sprites', Nsamples=100, model_type='unet', seed=1, tag='sgdcos_lr3e-3_warm10k', large_batch=512, generate_all_missing=False, saves_dir='../../Saves', timesteps=None, device='cuda:0')
+Generating 100 samples
+Training time = 0 (0/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_0
+Sample 0/1
+Training time = 250 (1/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_250
+Sample 0/1
+Training time = 500 (2/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_500
+Sample 0/1
+Training time = 750 (3/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_750
+Sample 0/1
+Training time = 1250 (4/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_1250
+Sample 0/1
+Training time = 1750 (5/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_1750
+Sample 0/1
+Training time = 2750 (6/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_2750
+Sample 0/1
+Training time = 4250 (7/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_4250
+Sample 0/1
+Training time = 6500 (8/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_6500
+Sample 0/1
+Training time = 10000 (9/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_10000
+Sample 0/1
+Training time = 15000 (10/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_15000
+Sample 0/1
+Training time = 20000 (11/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_20000
+Sample 0/1
+Training time = 25000 (12/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_25000
+Sample 0/1
+Training time = 30000 (13/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_30000
+Sample 0/1
+Training time = 35000 (14/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_35000
+Sample 0/1
+Training time = 40000 (15/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_40000
+Sample 0/1
+Training time = 45000 (16/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_45000
+Sample 0/1
+Training time = 50000 (17/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_50000
+Sample 0/1
+Training time = 55000 (18/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_55000
+Sample 0/1
+Training time = 60000 (19/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_60000
+Sample 0/1
+Training time = 65000 (20/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_65000
+Sample 0/1
+Training time = 70000 (21/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_70000
+Sample 0/1
+Training time = 75000 (22/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_75000
+Sample 0/1
+Training time = 80000 (23/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_80000
+Sample 0/1
+Training time = 85000 (24/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_85000
+Sample 0/1
+Training time = 90000 (25/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_90000
+Sample 0/1
+Training time = 95000 (26/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_95000
+Sample 0/1
+Training time = 100000 (27/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_100000
+Sample 0/1
+Training time = 105000 (28/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_105000
+Sample 0/1
+Training time = 110000 (29/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_110000
+Sample 0/1
+Training time = 115000 (30/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_115000
+Sample 0/1
+Training time = 125000 (31/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_125000
+Sample 0/1
+Training time = 130000 (32/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_130000
+Sample 0/1
+Training time = 135000 (33/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_135000
+Sample 0/1
+Training time = 145000 (34/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_145000
+Sample 0/1
+Training time = 155000 (35/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_155000
+Sample 0/1
+Training time = 160000 (36/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_160000
+Sample 0/1
+Training time = 170000 (37/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_170000
+Sample 0/1
+Training time = 180000 (38/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_180000
+Sample 0/1
+Training time = 190000 (39/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_190000
+Sample 0/1
+Training time = 200000 (40/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_200000
+Sample 0/1
+Training time = 210000 (41/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_210000
+Sample 0/1
+Training time = 220000 (42/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_220000
+Sample 0/1
+Training time = 230000 (43/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_230000
+Sample 0/1
+Training time = 245000 (44/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_245000
+Sample 0/1
+Training time = 260000 (45/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_260000
+Sample 0/1
+Training time = 270000 (46/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_270000
+Sample 0/1
+Training time = 285000 (47/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_285000
+Sample 0/1
+Training time = 300000 (48/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_300000
+Sample 0/1
+Training time = 320000 (49/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_320000
+Sample 0/1
+Training time = 335000 (50/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_335000
+Sample 0/1
+Training time = 355000 (51/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_355000
+Sample 0/1
+Training time = 370000 (52/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_370000
+Sample 0/1
+Training time = 390000 (53/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_390000
+Sample 0/1
+Training time = 410000 (54/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_410000
+Sample 0/1
+Training time = 435000 (55/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_435000
+Sample 0/1
+Training time = 460000 (56/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_460000
+Sample 0/1
+Training time = 480000 (57/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_480000
+Sample 0/1
+Training time = 510000 (58/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_510000
+Sample 0/1
+Training time = 535000 (59/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_535000
+Sample 0/1
+Training time = 565000 (60/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_565000
+Sample 0/1
+Training time = 595000 (61/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_595000
+Sample 0/1
+Training time = 625000 (62/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_625000
+Sample 0/1
+Training time = 660000 (63/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_660000
+Sample 0/1
+Training time = 695000 (64/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_695000
+Sample 0/1
+Training time = 730000 (65/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_730000
+Sample 0/1
+Training time = 770000 (66/67)
+Loading initial state at ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_770000
+Sample 0/1
+Done!
+Namespace(num=512, index=0, img_size=16, learning_rate=0.003, optim='SGD_Momentum', nbase='32', time=-1, batch_size=512, dataset='Sprites', Nsamples=100, model_type='unet', seed=1, tag='sgdcos_lr3e-3_warm10k', large_batch=512, generate_all_missing=False, saves_dir='../../Saves', timesteps=None, device='cuda:0')
+Generating 100 samples
+Training time = 0 (0/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_0
+Sample 0/1
+Training time = 250 (1/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_250
+Sample 0/1
+Training time = 500 (2/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_500
+Sample 0/1
+Training time = 750 (3/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_750
+Sample 0/1
+Training time = 1250 (4/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_1250
+Sample 0/1
+Training time = 1750 (5/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_1750
+Sample 0/1
+Training time = 2750 (6/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_2750
+Sample 0/1
+Training time = 4250 (7/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_4250
+Sample 0/1
+Training time = 6500 (8/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_6500
+Sample 0/1
+Training time = 10000 (9/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_10000
+Sample 0/1
+Training time = 15000 (10/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_15000
+Sample 0/1
+Training time = 20000 (11/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_20000
+Sample 0/1
+Training time = 25000 (12/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_25000
+Sample 0/1
+Training time = 30000 (13/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_30000
+Sample 0/1
+Training time = 35000 (14/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_35000
+Sample 0/1
+Training time = 40000 (15/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_40000
+Sample 0/1
+Training time = 45000 (16/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_45000
+Sample 0/1
+Training time = 50000 (17/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_50000
+Sample 0/1
+Training time = 55000 (18/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_55000
+Sample 0/1
+Training time = 60000 (19/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_60000
+Sample 0/1
+Training time = 65000 (20/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_65000
+Sample 0/1
+Training time = 70000 (21/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_70000
+Sample 0/1
+Training time = 75000 (22/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_75000
+Sample 0/1
+Training time = 80000 (23/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_80000
+Sample 0/1
+Training time = 85000 (24/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_85000
+Sample 0/1
+Training time = 90000 (25/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_90000
+Sample 0/1
+Training time = 95000 (26/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_95000
+Sample 0/1
+Training time = 100000 (27/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_100000
+Sample 0/1
+Training time = 105000 (28/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_105000
+Sample 0/1
+Training time = 110000 (29/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_110000
+Sample 0/1
+Training time = 115000 (30/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_115000
+Sample 0/1
+Training time = 125000 (31/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_125000
+Sample 0/1
+Training time = 130000 (32/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_130000
+Sample 0/1
+Training time = 135000 (33/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_135000
+Sample 0/1
+Training time = 145000 (34/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_145000
+Sample 0/1
+Training time = 155000 (35/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_155000
+Sample 0/1
+Training time = 160000 (36/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_160000
+Sample 0/1
+Training time = 170000 (37/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_170000
+Sample 0/1
+Training time = 180000 (38/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_180000
+Sample 0/1
+Training time = 190000 (39/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_190000
+Sample 0/1
+Training time = 200000 (40/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_200000
+Sample 0/1
+Training time = 210000 (41/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_210000
+Sample 0/1
+Training time = 220000 (42/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_220000
+Sample 0/1
+Training time = 230000 (43/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_230000
+Sample 0/1
+Training time = 245000 (44/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_245000
+Sample 0/1
+Training time = 260000 (45/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_260000
+Sample 0/1
+Training time = 270000 (46/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_270000
+Sample 0/1
+Training time = 285000 (47/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_285000
+Sample 0/1
+Training time = 300000 (48/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_300000
+Sample 0/1
+Training time = 320000 (49/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_320000
+Sample 0/1
+Training time = 335000 (50/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_335000
+Sample 0/1
+Training time = 355000 (51/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_355000
+Sample 0/1
+Training time = 370000 (52/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_370000
+Sample 0/1
+Training time = 390000 (53/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_390000
+Sample 0/1
+Training time = 410000 (54/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_410000
+Sample 0/1
+Training time = 435000 (55/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_435000
+Sample 0/1
+Training time = 460000 (56/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_460000
+Sample 0/1
+Training time = 480000 (57/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_480000
+Sample 0/1
+Training time = 510000 (58/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_510000
+Sample 0/1
+Training time = 535000 (59/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_535000
+Sample 0/1
+Training time = 565000 (60/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_565000
+Sample 0/1
+Training time = 595000 (61/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_595000
+Sample 0/1
+Training time = 625000 (62/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_625000
+Sample 0/1
+Training time = 660000 (63/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_660000
+Sample 0/1
+Training time = 695000 (64/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_695000
+Sample 0/1
+Training time = 730000 (65/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_730000
+Sample 0/1
+Training time = 770000 (66/67)
+Loading initial state at ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Models/Model_770000
+Sample 0/1
+Done!
+Skipping (already has samples): CelebA16_1024_32_Adam_512_0.0001_index0
+Skipping (already has samples): CelebA16_2048_32_Adam_512_0.0001_index0
+Skipping (already has samples): CelebA16_4096_32_Adam_512_0.0001_index0
+Skipping (already has samples): CelebA16_512_32_Adam_512_0.0001_index0
+Skipping (already has samples): CelebA32_1024_32_Adam_512_0.0001_index0
+Skipping (already has samples): CelebA32_512_32_Adam_512_0.0001_index0
+
+=== Generating samples for GMM8_4096_128_Adam_1_0.0006_B512_t-1 ===
+Running: /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/bin/python /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Generation/generate.py -n 4096 -s 16 -LR 0.0006 -O Adam -W 128 -B 1 -D GMM8 -Ns 100 -t -1 --device cuda:0 --model_type gmm8 --large_batch 512
+Failed to generate samples for GMM8_4096_128_Adam_1_0.0006_B512_t-1: Command '['/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/bin/python', '/work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Generation/generate.py', '-n', '4096', '-s', '16', '-LR', '0.0006', '-O', 'Adam', '-W', '128', '-B', '1', '-D', 'GMM8', '-Ns', '100', '-t', '-1', '--device', 'cuda:0', '--model_type', 'gmm8', '--large_batch', '512']' returned non-zero exit status 1.
+Skipping (already has samples): ISIC16_1024_32_Adam_512_0.0001_seed1
+Skipping (already has samples): ISIC16_2048_32_Adam_512_0.0001_seed1
+Skipping (already has samples): ISIC16_4096_32_Adam_512_0.0001_seed1
+Skipping (already has samples): ISIC16_512_32_Adam_512_0.0001_seed1
+Skipping (already has samples): ISIC32_1024_32_Adam_512_0.0001_seed1
+Skipping (already has samples): gmm_Sprites16_128_128_SGD_Momentum_128_0.0001_seed1
+Skipping (already has samples): gmm_Sprites16_4096_128_Adam_512_0.0006_seed1
+Skipping (already has samples): gmm_Sprites16_4096_128_SGD_Momentum_512_0.0006_seed1
+Skipping (already has samples): gmm_Sprites16_4096_512_Adam_512_0.0006_seed1
+Skipping (already has samples): gmm_Sprites16_512_512_Adam_512_0.0006_seed1
+Skipping (already has samples): unet_Sprites16_1024_16_Adam_512_0.0001_seed1
+Skipping (already has samples): unet_Sprites16_1024_32_Adam_512_0.0001_seed1
+Skipping (already has samples): unet_Sprites16_1024_32_Adam_512_0.0001_seed1_old
+Skipping (already has samples): unet_Sprites16_1024_32_SGD_Momentum_512_0.0001_seed1
+Skipping (already has samples): unet_Sprites16_1024_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k
+Skipping (already has samples): unet_Sprites16_1024_64_Adam_512_0.0001_seed1
+Skipping (already has samples): unet_Sprites16_1024_8_Adam_512_0.0001_seed1
+Skipping (already has samples): unet_Sprites16_1024_8_Adam_512_0.0001_seed1_old
+Skipping (already has samples): unet_Sprites16_2048_32_Adam_512_0.0001_seed1
+Skipping (already has samples): unet_Sprites16_2048_32_Adam_512_0.0001_seed1_old
+
+=== Generating samples for unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k ===
+Running: /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/bin/python /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Generation/generate.py -n 2048 -s 16 -LR 0.003 -O SGD_Momentum -W 32 -B 512 -D Sprites -Ns 100 -t -1 --device cuda:0 --model_type unet --seed 1 --tag sgdcos_lr3e-3_warm10k
+Skipping (already has samples): unet_Sprites16_4096_32_Adam_512_0.0001_seed1
+Skipping (already has samples): unet_Sprites16_4096_32_Adam_512_0.0001_seed1_old
+
+=== Generating samples for unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k ===
+Running: /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/bin/python /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Generation/generate.py -n 4096 -s 16 -LR 0.003 -O SGD_Momentum -W 32 -B 512 -D Sprites -Ns 100 -t -1 --device cuda:0 --model_type unet --seed 1 --tag sgdcos_lr3e-3_warm10k
+Skipping (already has samples): unet_Sprites16_512_32_Adam_512_0.0001_seed1
+Skipping (already has samples): unet_Sprites16_512_32_Adam_512_0.0001_seed1_old
+
+=== Generating samples for unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k ===
+Running: /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/bin/python /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Generation/generate.py -n 512 -s 16 -LR 0.003 -O SGD_Momentum -W 32 -B 512 -D Sprites -Ns 100 -t -1 --device cuda:0 --model_type unet --seed 1 --tag sgdcos_lr3e-3_warm10k
+
+Done. Generated samples for 3 experiment(s), skipped 31.
+Arguments: Namespace(num=1024, index=0, img_size=16, learning_rate=0.0001, optim='Adam', nbase=8, batch_size=512, dataset='Sprites', model_type='unet', seed=1, tag='old', time=-1, experiment_dir='unet_Sprites16_1024_8_Adam_512_0.0001_seed1_old', isic_data_root='../../Data/ISIC_2019_Training_Input/ISIC_2019_Training_Input', num_workers=2, Nsamples=1, batch_sample_size=100, gap_threshold=0.3333333333333333, device='cuda:0')
+Computing memorization fraction for 40 checkpoints...
+Model: unet_Sprites16_1024_8_Adam_512_0.0001_seed1_old/
+Output file: ../../Saves/unet_Sprites16_1024_8_Adam_512_0.0001_seed1_old/Memorization/fraction_memorized.txt
+Dataset shape: (1024, 16, 16, 3)
+Memorization fraction computation completed!
+Arguments: Namespace(num=1024, index=0, img_size=16, learning_rate=0.0001, optim='Adam', nbase=8, batch_size=512, dataset='Sprites', model_type='unet', seed=1, tag='old', time=-1, experiment_dir='unet_Sprites16_1024_8_Adam_512_0.0001_seed1_old', isic_data_root='../../Data/ISIC_2019_Training_Input/ISIC_2019_Training_Input', num_workers=2, id_stat=1, N1=0, N2=1, batch_size_samples=100, device='cuda:0', fid_batch_size=50, fid_dims=2048, fid_num_workers=None, rebuild_stats=True, no_auto_stats=False)
+Dataset shape: (1024, 16, 16, 3)
+Saving statistics for ../../Saves/FID_ref/tmp_stats_1
+Computing FID for 40 checkpoints...
+Model: unet_Sprites16_1024_8_Adam_512_0.0001_seed1_old/
+Reference statistics: ../../Saves/FID_ref/stats1.npz
+Output file: ../../Saves/unet_Sprites16_1024_8_Adam_512_0.0001_seed1_old/FID/FID_1.txt
+FID computation completed!
+Arguments: Namespace(num=2048, index=0, img_size=16, learning_rate=0.0001, optim='Adam', nbase=32, batch_size=512, dataset='Sprites', model_type='unet', seed=1, tag='', time=-1, experiment_dir='unet_Sprites16_2048_32_Adam_512_0.0001_seed1', isic_data_root='../../Data/ISIC_2019_Training_Input/ISIC_2019_Training_Input', num_workers=2, Nsamples=1, batch_sample_size=100, gap_threshold=0.3333333333333333, device='cuda:0')
+Computing memorization fraction for 71 checkpoints...
+Model: unet_Sprites16_2048_32_Adam_512_0.0001_seed1/
+Output file: ../../Saves/unet_Sprites16_2048_32_Adam_512_0.0001_seed1/Memorization/fraction_memorized.txt
+Dataset shape: (2048, 16, 16, 3)
+Warning: File not found: ../../Saves/unet_Sprites16_2048_32_Adam_512_0.0001_seed1/Samples//200000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 200000.
+Warning: File not found: ../../Saves/unet_Sprites16_2048_32_Adam_512_0.0001_seed1/Samples//210000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 210000.
+Warning: File not found: ../../Saves/unet_Sprites16_2048_32_Adam_512_0.0001_seed1/Samples//220000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 220000.
+Warning: File not found: ../../Saves/unet_Sprites16_2048_32_Adam_512_0.0001_seed1/Samples//230000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 230000.
+Warning: File not found: ../../Saves/unet_Sprites16_2048_32_Adam_512_0.0001_seed1/Samples//245000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 245000.
+Warning: File not found: ../../Saves/unet_Sprites16_2048_32_Adam_512_0.0001_seed1/Samples//260000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 260000.
+Warning: File not found: ../../Saves/unet_Sprites16_2048_32_Adam_512_0.0001_seed1/Samples//270000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 270000.
+Warning: File not found: ../../Saves/unet_Sprites16_2048_32_Adam_512_0.0001_seed1/Samples//285000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 285000.
+Warning: File not found: ../../Saves/unet_Sprites16_2048_32_Adam_512_0.0001_seed1/Samples//300000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 300000.
+Warning: File not found: ../../Saves/unet_Sprites16_2048_32_Adam_512_0.0001_seed1/Samples//320000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 320000.
+Warning: File not found: ../../Saves/unet_Sprites16_2048_32_Adam_512_0.0001_seed1/Samples//335000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 335000.
+Warning: File not found: ../../Saves/unet_Sprites16_2048_32_Adam_512_0.0001_seed1/Samples//355000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 355000.
+Warning: File not found: ../../Saves/unet_Sprites16_2048_32_Adam_512_0.0001_seed1/Samples//370000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 370000.
+Warning: File not found: ../../Saves/unet_Sprites16_2048_32_Adam_512_0.0001_seed1/Samples//390000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 390000.
+Warning: File not found: ../../Saves/unet_Sprites16_2048_32_Adam_512_0.0001_seed1/Samples//410000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 410000.
+Warning: File not found: ../../Saves/unet_Sprites16_2048_32_Adam_512_0.0001_seed1/Samples//435000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 435000.
+Warning: File not found: ../../Saves/unet_Sprites16_2048_32_Adam_512_0.0001_seed1/Samples//460000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 460000.
+Warning: File not found: ../../Saves/unet_Sprites16_2048_32_Adam_512_0.0001_seed1/Samples//480000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 480000.
+Warning: File not found: ../../Saves/unet_Sprites16_2048_32_Adam_512_0.0001_seed1/Samples//510000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 510000.
+Warning: File not found: ../../Saves/unet_Sprites16_2048_32_Adam_512_0.0001_seed1/Samples//535000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 535000.
+Warning: File not found: ../../Saves/unet_Sprites16_2048_32_Adam_512_0.0001_seed1/Samples//565000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 565000.
+Warning: File not found: ../../Saves/unet_Sprites16_2048_32_Adam_512_0.0001_seed1/Samples//595000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 595000.
+Warning: File not found: ../../Saves/unet_Sprites16_2048_32_Adam_512_0.0001_seed1/Samples//625000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 625000.
+Warning: File not found: ../../Saves/unet_Sprites16_2048_32_Adam_512_0.0001_seed1/Samples//660000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 660000.
+Warning: File not found: ../../Saves/unet_Sprites16_2048_32_Adam_512_0.0001_seed1/Samples//695000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 695000.
+Warning: File not found: ../../Saves/unet_Sprites16_2048_32_Adam_512_0.0001_seed1/Samples//730000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 730000.
+Warning: File not found: ../../Saves/unet_Sprites16_2048_32_Adam_512_0.0001_seed1/Samples//770000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 770000.
+Warning: File not found: ../../Saves/unet_Sprites16_2048_32_Adam_512_0.0001_seed1/Samples//810000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 810000.
+Warning: File not found: ../../Saves/unet_Sprites16_2048_32_Adam_512_0.0001_seed1/Samples//855000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 855000.
+Warning: File not found: ../../Saves/unet_Sprites16_2048_32_Adam_512_0.0001_seed1/Samples//900000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 900000.
+Warning: File not found: ../../Saves/unet_Sprites16_2048_32_Adam_512_0.0001_seed1/Samples//945000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 945000.
+Memorization fraction computation completed!
+Arguments: Namespace(num=2048, index=0, img_size=16, learning_rate=0.0001, optim='Adam', nbase=32, batch_size=512, dataset='Sprites', model_type='unet', seed=1, tag='', time=-1, experiment_dir='unet_Sprites16_2048_32_Adam_512_0.0001_seed1', isic_data_root='../../Data/ISIC_2019_Training_Input/ISIC_2019_Training_Input', num_workers=2, id_stat=1, N1=0, N2=1, batch_size_samples=100, device='cuda:0', fid_batch_size=50, fid_dims=2048, fid_num_workers=None, rebuild_stats=True, no_auto_stats=False)
+Dataset shape: (2048, 16, 16, 3)
+Saving statistics for ../../Saves/FID_ref/tmp_stats_1
+Computing FID for 71 checkpoints...
+Model: unet_Sprites16_2048_32_Adam_512_0.0001_seed1/
+Reference statistics: ../../Saves/FID_ref/stats1.npz
+Output file: ../../Saves/unet_Sprites16_2048_32_Adam_512_0.0001_seed1/FID/FID_1.txt
+Error computing FID for checkpoint 200000: No generated batches found for checkpoint 200000
+Skipping...
+Error computing FID for checkpoint 210000: No generated batches found for checkpoint 210000
+Skipping...
+Error computing FID for checkpoint 220000: No generated batches found for checkpoint 220000
+Skipping...
+Error computing FID for checkpoint 230000: No generated batches found for checkpoint 230000
+Skipping...
+Error computing FID for checkpoint 245000: No generated batches found for checkpoint 245000
+Skipping...
+Error computing FID for checkpoint 260000: No generated batches found for checkpoint 260000
+Skipping...
+Error computing FID for checkpoint 270000: No generated batches found for checkpoint 270000
+Skipping...
+Error computing FID for checkpoint 285000: No generated batches found for checkpoint 285000
+Skipping...
+Error computing FID for checkpoint 300000: No generated batches found for checkpoint 300000
+Skipping...
+Error computing FID for checkpoint 320000: No generated batches found for checkpoint 320000
+Skipping...
+Error computing FID for checkpoint 335000: No generated batches found for checkpoint 335000
+Skipping...
+Error computing FID for checkpoint 355000: No generated batches found for checkpoint 355000
+Skipping...
+Error computing FID for checkpoint 370000: No generated batches found for checkpoint 370000
+Skipping...
+Error computing FID for checkpoint 390000: No generated batches found for checkpoint 390000
+Skipping...
+Error computing FID for checkpoint 410000: No generated batches found for checkpoint 410000
+Skipping...
+Error computing FID for checkpoint 435000: No generated batches found for checkpoint 435000
+Skipping...
+Error computing FID for checkpoint 460000: No generated batches found for checkpoint 460000
+Skipping...
+Error computing FID for checkpoint 480000: No generated batches found for checkpoint 480000
+Skipping...
+Error computing FID for checkpoint 510000: No generated batches found for checkpoint 510000
+Skipping...
+Error computing FID for checkpoint 535000: No generated batches found for checkpoint 535000
+Skipping...
+Error computing FID for checkpoint 565000: No generated batches found for checkpoint 565000
+Skipping...
+Error computing FID for checkpoint 595000: No generated batches found for checkpoint 595000
+Skipping...
+Error computing FID for checkpoint 625000: No generated batches found for checkpoint 625000
+Skipping...
+Error computing FID for checkpoint 660000: No generated batches found for checkpoint 660000
+Skipping...
+Error computing FID for checkpoint 695000: No generated batches found for checkpoint 695000
+Skipping...
+Error computing FID for checkpoint 730000: No generated batches found for checkpoint 730000
+Skipping...
+Error computing FID for checkpoint 770000: No generated batches found for checkpoint 770000
+Skipping...
+Error computing FID for checkpoint 810000: No generated batches found for checkpoint 810000
+Skipping...
+Error computing FID for checkpoint 855000: No generated batches found for checkpoint 855000
+Skipping...
+Error computing FID for checkpoint 900000: No generated batches found for checkpoint 900000
+Skipping...
+Error computing FID for checkpoint 945000: No generated batches found for checkpoint 945000
+Skipping...
+FID computation completed!
+Arguments: Namespace(num=2048, index=0, img_size=16, learning_rate=0.003, optim='SGD_Momentum', nbase=32, batch_size=512, dataset='Sprites', model_type='unet', seed=1, tag='sgdcos_lr3e-3_warm10k', time=-1, experiment_dir='unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k', isic_data_root='../../Data/ISIC_2019_Training_Input/ISIC_2019_Training_Input', num_workers=2, Nsamples=1, batch_sample_size=100, gap_threshold=0.3333333333333333, device='cuda:0')
+Computing memorization fraction for 67 checkpoints...
+Model: unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/
+Output file: ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Memorization/fraction_memorized.txt
+Dataset shape: (2048, 16, 16, 3)
+Memorization fraction computation completed!
+Arguments: Namespace(num=2048, index=0, img_size=16, learning_rate=0.003, optim='SGD_Momentum', nbase=32, batch_size=512, dataset='Sprites', model_type='unet', seed=1, tag='sgdcos_lr3e-3_warm10k', time=-1, experiment_dir='unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k', isic_data_root='../../Data/ISIC_2019_Training_Input/ISIC_2019_Training_Input', num_workers=2, id_stat=1, N1=0, N2=1, batch_size_samples=100, device='cuda:0', fid_batch_size=50, fid_dims=2048, fid_num_workers=None, rebuild_stats=True, no_auto_stats=False)
+Dataset shape: (2048, 16, 16, 3)
+Saving statistics for ../../Saves/FID_ref/tmp_stats_1
+Computing FID for 67 checkpoints...
+Model: unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/
+Reference statistics: ../../Saves/FID_ref/stats1.npz
+Output file: ../../Saves/unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/FID/FID_1.txt
+FID computation completed!
+Arguments: Namespace(num=4096, index=0, img_size=16, learning_rate=0.0001, optim='Adam', nbase=32, batch_size=512, dataset='Sprites', model_type='unet', seed=1, tag='', time=-1, experiment_dir='unet_Sprites16_4096_32_Adam_512_0.0001_seed1', isic_data_root='../../Data/ISIC_2019_Training_Input/ISIC_2019_Training_Input', num_workers=2, Nsamples=1, batch_sample_size=100, gap_threshold=0.3333333333333333, device='cuda:0')
+Computing memorization fraction for 71 checkpoints...
+Model: unet_Sprites16_4096_32_Adam_512_0.0001_seed1/
+Output file: ../../Saves/unet_Sprites16_4096_32_Adam_512_0.0001_seed1/Memorization/fraction_memorized.txt
+Dataset shape: (4096, 16, 16, 3)
+Warning: File not found: ../../Saves/unet_Sprites16_4096_32_Adam_512_0.0001_seed1/Samples//200000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 200000.
+Warning: File not found: ../../Saves/unet_Sprites16_4096_32_Adam_512_0.0001_seed1/Samples//210000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 210000.
+Warning: File not found: ../../Saves/unet_Sprites16_4096_32_Adam_512_0.0001_seed1/Samples//220000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 220000.
+Warning: File not found: ../../Saves/unet_Sprites16_4096_32_Adam_512_0.0001_seed1/Samples//230000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 230000.
+Warning: File not found: ../../Saves/unet_Sprites16_4096_32_Adam_512_0.0001_seed1/Samples//245000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 245000.
+Warning: File not found: ../../Saves/unet_Sprites16_4096_32_Adam_512_0.0001_seed1/Samples//260000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 260000.
+Warning: File not found: ../../Saves/unet_Sprites16_4096_32_Adam_512_0.0001_seed1/Samples//270000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 270000.
+Warning: File not found: ../../Saves/unet_Sprites16_4096_32_Adam_512_0.0001_seed1/Samples//285000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 285000.
+Warning: File not found: ../../Saves/unet_Sprites16_4096_32_Adam_512_0.0001_seed1/Samples//300000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 300000.
+Warning: File not found: ../../Saves/unet_Sprites16_4096_32_Adam_512_0.0001_seed1/Samples//320000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 320000.
+Warning: File not found: ../../Saves/unet_Sprites16_4096_32_Adam_512_0.0001_seed1/Samples//335000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 335000.
+Warning: File not found: ../../Saves/unet_Sprites16_4096_32_Adam_512_0.0001_seed1/Samples//355000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 355000.
+Warning: File not found: ../../Saves/unet_Sprites16_4096_32_Adam_512_0.0001_seed1/Samples//370000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 370000.
+Warning: File not found: ../../Saves/unet_Sprites16_4096_32_Adam_512_0.0001_seed1/Samples//390000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 390000.
+Warning: File not found: ../../Saves/unet_Sprites16_4096_32_Adam_512_0.0001_seed1/Samples//410000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 410000.
+Warning: File not found: ../../Saves/unet_Sprites16_4096_32_Adam_512_0.0001_seed1/Samples//435000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 435000.
+Warning: File not found: ../../Saves/unet_Sprites16_4096_32_Adam_512_0.0001_seed1/Samples//460000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 460000.
+Warning: File not found: ../../Saves/unet_Sprites16_4096_32_Adam_512_0.0001_seed1/Samples//480000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 480000.
+Warning: File not found: ../../Saves/unet_Sprites16_4096_32_Adam_512_0.0001_seed1/Samples//510000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 510000.
+Warning: File not found: ../../Saves/unet_Sprites16_4096_32_Adam_512_0.0001_seed1/Samples//535000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 535000.
+Warning: File not found: ../../Saves/unet_Sprites16_4096_32_Adam_512_0.0001_seed1/Samples//565000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 565000.
+Warning: File not found: ../../Saves/unet_Sprites16_4096_32_Adam_512_0.0001_seed1/Samples//595000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 595000.
+Warning: File not found: ../../Saves/unet_Sprites16_4096_32_Adam_512_0.0001_seed1/Samples//625000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 625000.
+Warning: File not found: ../../Saves/unet_Sprites16_4096_32_Adam_512_0.0001_seed1/Samples//660000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 660000.
+Warning: File not found: ../../Saves/unet_Sprites16_4096_32_Adam_512_0.0001_seed1/Samples//695000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 695000.
+Warning: File not found: ../../Saves/unet_Sprites16_4096_32_Adam_512_0.0001_seed1/Samples//730000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 730000.
+Warning: File not found: ../../Saves/unet_Sprites16_4096_32_Adam_512_0.0001_seed1/Samples//770000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 770000.
+Warning: File not found: ../../Saves/unet_Sprites16_4096_32_Adam_512_0.0001_seed1/Samples//810000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 810000.
+Warning: File not found: ../../Saves/unet_Sprites16_4096_32_Adam_512_0.0001_seed1/Samples//855000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 855000.
+Warning: File not found: ../../Saves/unet_Sprites16_4096_32_Adam_512_0.0001_seed1/Samples//900000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 900000.
+Warning: File not found: ../../Saves/unet_Sprites16_4096_32_Adam_512_0.0001_seed1/Samples//945000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 945000.
+Memorization fraction computation completed!
+Arguments: Namespace(num=4096, index=0, img_size=16, learning_rate=0.0001, optim='Adam', nbase=32, batch_size=512, dataset='Sprites', model_type='unet', seed=1, tag='', time=-1, experiment_dir='unet_Sprites16_4096_32_Adam_512_0.0001_seed1', isic_data_root='../../Data/ISIC_2019_Training_Input/ISIC_2019_Training_Input', num_workers=2, id_stat=1, N1=0, N2=1, batch_size_samples=100, device='cuda:0', fid_batch_size=50, fid_dims=2048, fid_num_workers=None, rebuild_stats=True, no_auto_stats=False)
+Dataset shape: (4096, 16, 16, 3)
+Saving statistics for ../../Saves/FID_ref/tmp_stats_1
+Computing FID for 71 checkpoints...
+Model: unet_Sprites16_4096_32_Adam_512_0.0001_seed1/
+Reference statistics: ../../Saves/FID_ref/stats1.npz
+Output file: ../../Saves/unet_Sprites16_4096_32_Adam_512_0.0001_seed1/FID/FID_1.txt
+Error computing FID for checkpoint 200000: No generated batches found for checkpoint 200000
+Skipping...
+Error computing FID for checkpoint 210000: No generated batches found for checkpoint 210000
+Skipping...
+Error computing FID for checkpoint 220000: No generated batches found for checkpoint 220000
+Skipping...
+Error computing FID for checkpoint 230000: No generated batches found for checkpoint 230000
+Skipping...
+Error computing FID for checkpoint 245000: No generated batches found for checkpoint 245000
+Skipping...
+Error computing FID for checkpoint 260000: No generated batches found for checkpoint 260000
+Skipping...
+Error computing FID for checkpoint 270000: No generated batches found for checkpoint 270000
+Skipping...
+Error computing FID for checkpoint 285000: No generated batches found for checkpoint 285000
+Skipping...
+Error computing FID for checkpoint 300000: No generated batches found for checkpoint 300000
+Skipping...
+Error computing FID for checkpoint 320000: No generated batches found for checkpoint 320000
+Skipping...
+Error computing FID for checkpoint 335000: No generated batches found for checkpoint 335000
+Skipping...
+Error computing FID for checkpoint 355000: No generated batches found for checkpoint 355000
+Skipping...
+Error computing FID for checkpoint 370000: No generated batches found for checkpoint 370000
+Skipping...
+Error computing FID for checkpoint 390000: No generated batches found for checkpoint 390000
+Skipping...
+Error computing FID for checkpoint 410000: No generated batches found for checkpoint 410000
+Skipping...
+Error computing FID for checkpoint 435000: No generated batches found for checkpoint 435000
+Skipping...
+Error computing FID for checkpoint 460000: No generated batches found for checkpoint 460000
+Skipping...
+Error computing FID for checkpoint 480000: No generated batches found for checkpoint 480000
+Skipping...
+Error computing FID for checkpoint 510000: No generated batches found for checkpoint 510000
+Skipping...
+Error computing FID for checkpoint 535000: No generated batches found for checkpoint 535000
+Skipping...
+Error computing FID for checkpoint 565000: No generated batches found for checkpoint 565000
+Skipping...
+Error computing FID for checkpoint 595000: No generated batches found for checkpoint 595000
+Skipping...
+Error computing FID for checkpoint 625000: No generated batches found for checkpoint 625000
+Skipping...
+Error computing FID for checkpoint 660000: No generated batches found for checkpoint 660000
+Skipping...
+Error computing FID for checkpoint 695000: No generated batches found for checkpoint 695000
+Skipping...
+Error computing FID for checkpoint 730000: No generated batches found for checkpoint 730000
+Skipping...
+Error computing FID for checkpoint 770000: No generated batches found for checkpoint 770000
+Skipping...
+Error computing FID for checkpoint 810000: No generated batches found for checkpoint 810000
+Skipping...
+Error computing FID for checkpoint 855000: No generated batches found for checkpoint 855000
+Skipping...
+Error computing FID for checkpoint 900000: No generated batches found for checkpoint 900000
+Skipping...
+Error computing FID for checkpoint 945000: No generated batches found for checkpoint 945000
+Skipping...
+FID computation completed!
+Arguments: Namespace(num=4096, index=0, img_size=16, learning_rate=0.003, optim='SGD_Momentum', nbase=32, batch_size=512, dataset='Sprites', model_type='unet', seed=1, tag='sgdcos_lr3e-3_warm10k', time=-1, experiment_dir='unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k', isic_data_root='../../Data/ISIC_2019_Training_Input/ISIC_2019_Training_Input', num_workers=2, Nsamples=1, batch_sample_size=100, gap_threshold=0.3333333333333333, device='cuda:0')
+Computing memorization fraction for 67 checkpoints...
+Model: unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/
+Output file: ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Memorization/fraction_memorized.txt
+Dataset shape: (4096, 16, 16, 3)
+Memorization fraction computation completed!
+Arguments: Namespace(num=4096, index=0, img_size=16, learning_rate=0.003, optim='SGD_Momentum', nbase=32, batch_size=512, dataset='Sprites', model_type='unet', seed=1, tag='sgdcos_lr3e-3_warm10k', time=-1, experiment_dir='unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k', isic_data_root='../../Data/ISIC_2019_Training_Input/ISIC_2019_Training_Input', num_workers=2, id_stat=1, N1=0, N2=1, batch_size_samples=100, device='cuda:0', fid_batch_size=50, fid_dims=2048, fid_num_workers=None, rebuild_stats=True, no_auto_stats=False)
+Dataset shape: (4096, 16, 16, 3)
+Saving statistics for ../../Saves/FID_ref/tmp_stats_1
+Computing FID for 67 checkpoints...
+Model: unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/
+Reference statistics: ../../Saves/FID_ref/stats1.npz
+Output file: ../../Saves/unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/FID/FID_1.txt
+FID computation completed!
+Arguments: Namespace(num=512, index=0, img_size=16, learning_rate=0.0001, optim='Adam', nbase=32, batch_size=512, dataset='Sprites', model_type='unet', seed=1, tag='', time=-1, experiment_dir='unet_Sprites16_512_32_Adam_512_0.0001_seed1', isic_data_root='../../Data/ISIC_2019_Training_Input/ISIC_2019_Training_Input', num_workers=2, Nsamples=1, batch_sample_size=100, gap_threshold=0.3333333333333333, device='cuda:0')
+Computing memorization fraction for 71 checkpoints...
+Model: unet_Sprites16_512_32_Adam_512_0.0001_seed1/
+Output file: ../../Saves/unet_Sprites16_512_32_Adam_512_0.0001_seed1/Memorization/fraction_memorized.txt
+Dataset shape: (512, 16, 16, 3)
+Warning: File not found: ../../Saves/unet_Sprites16_512_32_Adam_512_0.0001_seed1/Samples//200000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 200000.
+Warning: File not found: ../../Saves/unet_Sprites16_512_32_Adam_512_0.0001_seed1/Samples//210000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 210000.
+Warning: File not found: ../../Saves/unet_Sprites16_512_32_Adam_512_0.0001_seed1/Samples//220000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 220000.
+Warning: File not found: ../../Saves/unet_Sprites16_512_32_Adam_512_0.0001_seed1/Samples//230000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 230000.
+Warning: File not found: ../../Saves/unet_Sprites16_512_32_Adam_512_0.0001_seed1/Samples//245000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 245000.
+Warning: File not found: ../../Saves/unet_Sprites16_512_32_Adam_512_0.0001_seed1/Samples//260000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 260000.
+Warning: File not found: ../../Saves/unet_Sprites16_512_32_Adam_512_0.0001_seed1/Samples//270000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 270000.
+Warning: File not found: ../../Saves/unet_Sprites16_512_32_Adam_512_0.0001_seed1/Samples//285000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 285000.
+Warning: File not found: ../../Saves/unet_Sprites16_512_32_Adam_512_0.0001_seed1/Samples//300000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 300000.
+Warning: File not found: ../../Saves/unet_Sprites16_512_32_Adam_512_0.0001_seed1/Samples//320000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 320000.
+Warning: File not found: ../../Saves/unet_Sprites16_512_32_Adam_512_0.0001_seed1/Samples//335000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 335000.
+Warning: File not found: ../../Saves/unet_Sprites16_512_32_Adam_512_0.0001_seed1/Samples//355000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 355000.
+Warning: File not found: ../../Saves/unet_Sprites16_512_32_Adam_512_0.0001_seed1/Samples//370000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 370000.
+Warning: File not found: ../../Saves/unet_Sprites16_512_32_Adam_512_0.0001_seed1/Samples//390000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 390000.
+Warning: File not found: ../../Saves/unet_Sprites16_512_32_Adam_512_0.0001_seed1/Samples//410000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 410000.
+Warning: File not found: ../../Saves/unet_Sprites16_512_32_Adam_512_0.0001_seed1/Samples//435000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 435000.
+Warning: File not found: ../../Saves/unet_Sprites16_512_32_Adam_512_0.0001_seed1/Samples//460000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 460000.
+Warning: File not found: ../../Saves/unet_Sprites16_512_32_Adam_512_0.0001_seed1/Samples//480000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 480000.
+Warning: File not found: ../../Saves/unet_Sprites16_512_32_Adam_512_0.0001_seed1/Samples//510000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 510000.
+Warning: File not found: ../../Saves/unet_Sprites16_512_32_Adam_512_0.0001_seed1/Samples//535000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 535000.
+Warning: File not found: ../../Saves/unet_Sprites16_512_32_Adam_512_0.0001_seed1/Samples//565000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 565000.
+Warning: File not found: ../../Saves/unet_Sprites16_512_32_Adam_512_0.0001_seed1/Samples//595000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 595000.
+Warning: File not found: ../../Saves/unet_Sprites16_512_32_Adam_512_0.0001_seed1/Samples//625000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 625000.
+Warning: File not found: ../../Saves/unet_Sprites16_512_32_Adam_512_0.0001_seed1/Samples//660000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 660000.
+Warning: File not found: ../../Saves/unet_Sprites16_512_32_Adam_512_0.0001_seed1/Samples//695000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 695000.
+Warning: File not found: ../../Saves/unet_Sprites16_512_32_Adam_512_0.0001_seed1/Samples//730000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 730000.
+Warning: File not found: ../../Saves/unet_Sprites16_512_32_Adam_512_0.0001_seed1/Samples//770000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 770000.
+Warning: File not found: ../../Saves/unet_Sprites16_512_32_Adam_512_0.0001_seed1/Samples//810000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 810000.
+Warning: File not found: ../../Saves/unet_Sprites16_512_32_Adam_512_0.0001_seed1/Samples//855000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 855000.
+Warning: File not found: ../../Saves/unet_Sprites16_512_32_Adam_512_0.0001_seed1/Samples//900000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 900000.
+Warning: File not found: ../../Saves/unet_Sprites16_512_32_Adam_512_0.0001_seed1/Samples//945000/generated/samples_a_0
+Warning: no generated samples found for checkpoint 945000.
+Memorization fraction computation completed!
+Arguments: Namespace(num=512, index=0, img_size=16, learning_rate=0.0001, optim='Adam', nbase=32, batch_size=512, dataset='Sprites', model_type='unet', seed=1, tag='', time=-1, experiment_dir='unet_Sprites16_512_32_Adam_512_0.0001_seed1', isic_data_root='../../Data/ISIC_2019_Training_Input/ISIC_2019_Training_Input', num_workers=2, id_stat=1, N1=0, N2=1, batch_size_samples=100, device='cuda:0', fid_batch_size=50, fid_dims=2048, fid_num_workers=None, rebuild_stats=True, no_auto_stats=False)
+Dataset shape: (512, 16, 16, 3)
+Saving statistics for ../../Saves/FID_ref/tmp_stats_1
+Computing FID for 71 checkpoints...
+Model: unet_Sprites16_512_32_Adam_512_0.0001_seed1/
+Reference statistics: ../../Saves/FID_ref/stats1.npz
+Output file: ../../Saves/unet_Sprites16_512_32_Adam_512_0.0001_seed1/FID/FID_1.txt
+Error computing FID for checkpoint 200000: No generated batches found for checkpoint 200000
+Skipping...
+Error computing FID for checkpoint 210000: No generated batches found for checkpoint 210000
+Skipping...
+Error computing FID for checkpoint 220000: No generated batches found for checkpoint 220000
+Skipping...
+Error computing FID for checkpoint 230000: No generated batches found for checkpoint 230000
+Skipping...
+Error computing FID for checkpoint 245000: No generated batches found for checkpoint 245000
+Skipping...
+Error computing FID for checkpoint 260000: No generated batches found for checkpoint 260000
+Skipping...
+Error computing FID for checkpoint 270000: No generated batches found for checkpoint 270000
+Skipping...
+Error computing FID for checkpoint 285000: No generated batches found for checkpoint 285000
+Skipping...
+Error computing FID for checkpoint 300000: No generated batches found for checkpoint 300000
+Skipping...
+Error computing FID for checkpoint 320000: No generated batches found for checkpoint 320000
+Skipping...
+Error computing FID for checkpoint 335000: No generated batches found for checkpoint 335000
+Skipping...
+Error computing FID for checkpoint 355000: No generated batches found for checkpoint 355000
+Skipping...
+Error computing FID for checkpoint 370000: No generated batches found for checkpoint 370000
+Skipping...
+Error computing FID for checkpoint 390000: No generated batches found for checkpoint 390000
+Skipping...
+Error computing FID for checkpoint 410000: No generated batches found for checkpoint 410000
+Skipping...
+Error computing FID for checkpoint 435000: No generated batches found for checkpoint 435000
+Skipping...
+Error computing FID for checkpoint 460000: No generated batches found for checkpoint 460000
+Skipping...
+Error computing FID for checkpoint 480000: No generated batches found for checkpoint 480000
+Skipping...
+Error computing FID for checkpoint 510000: No generated batches found for checkpoint 510000
+Skipping...
+Error computing FID for checkpoint 535000: No generated batches found for checkpoint 535000
+Skipping...
+Error computing FID for checkpoint 565000: No generated batches found for checkpoint 565000
+Skipping...
+Error computing FID for checkpoint 595000: No generated batches found for checkpoint 595000
+Skipping...
+Error computing FID for checkpoint 625000: No generated batches found for checkpoint 625000
+Skipping...
+Error computing FID for checkpoint 660000: No generated batches found for checkpoint 660000
+Skipping...
+Error computing FID for checkpoint 695000: No generated batches found for checkpoint 695000
+Skipping...
+Error computing FID for checkpoint 730000: No generated batches found for checkpoint 730000
+Skipping...
+Error computing FID for checkpoint 770000: No generated batches found for checkpoint 770000
+Skipping...
+Error computing FID for checkpoint 810000: No generated batches found for checkpoint 810000
+Skipping...
+Error computing FID for checkpoint 855000: No generated batches found for checkpoint 855000
+Skipping...
+Error computing FID for checkpoint 900000: No generated batches found for checkpoint 900000
+Skipping...
+Error computing FID for checkpoint 945000: No generated batches found for checkpoint 945000
+Skipping...
+FID computation completed!
+Arguments: Namespace(num=512, index=0, img_size=16, learning_rate=0.003, optim='SGD_Momentum', nbase=32, batch_size=512, dataset='Sprites', model_type='unet', seed=1, tag='sgdcos_lr3e-3_warm10k', time=-1, experiment_dir='unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k', isic_data_root='../../Data/ISIC_2019_Training_Input/ISIC_2019_Training_Input', num_workers=2, Nsamples=1, batch_sample_size=100, gap_threshold=0.3333333333333333, device='cuda:0')
+Computing memorization fraction for 67 checkpoints...
+Model: unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/
+Output file: ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/Memorization/fraction_memorized.txt
+Dataset shape: (512, 16, 16, 3)
+Memorization fraction computation completed!
+Arguments: Namespace(num=512, index=0, img_size=16, learning_rate=0.003, optim='SGD_Momentum', nbase=32, batch_size=512, dataset='Sprites', model_type='unet', seed=1, tag='sgdcos_lr3e-3_warm10k', time=-1, experiment_dir='unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k', isic_data_root='../../Data/ISIC_2019_Training_Input/ISIC_2019_Training_Input', num_workers=2, id_stat=1, N1=0, N2=1, batch_size_samples=100, device='cuda:0', fid_batch_size=50, fid_dims=2048, fid_num_workers=None, rebuild_stats=True, no_auto_stats=False)
+Dataset shape: (512, 16, 16, 3)
+Saving statistics for ../../Saves/FID_ref/tmp_stats_1
+Computing FID for 67 checkpoints...
+Model: unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/
+Reference statistics: ../../Saves/FID_ref/stats1.npz
+Output file: ../../Saves/unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k/FID/FID_1.txt
+FID computation completed!
+Skipping (FID and fmem already exist): CelebA16_1024_32_Adam_512_0.0001_index0
+Skipping (FID and fmem already exist): CelebA16_2048_32_Adam_512_0.0001_index0
+Skipping (FID and fmem already exist): CelebA16_4096_32_Adam_512_0.0001_index0
+Skipping (FID and fmem already exist): CelebA16_512_32_Adam_512_0.0001_index0
+Skipping (FID and fmem already exist): CelebA32_1024_32_Adam_512_0.0001_index0
+Skipping (FID and fmem already exist): CelebA32_512_32_Adam_512_0.0001_index0
+Skipping unsupported folder name: GMM8_4096_128_Adam_1_0.0006_B512_t-1
+Skipping (FID and fmem already exist): ISIC16_1024_32_Adam_512_0.0001_seed1
+Skipping unsupported folder name: ISIC16_2048_32_Adam_512_0.0001_seed1
+Skipping unsupported folder name: ISIC16_4096_32_Adam_512_0.0001_seed1
+Skipping unsupported folder name: ISIC16_512_32_Adam_512_0.0001_seed1
+Skipping unsupported folder name: ISIC32_1024_32_Adam_512_0.0001_seed1
+Skipping (FID and fmem already exist): gmm_Sprites16_128_128_SGD_Momentum_128_0.0001_seed1
+Skipping (FID and fmem already exist): gmm_Sprites16_4096_128_Adam_512_0.0006_seed1
+Skipping (FID and fmem already exist): gmm_Sprites16_4096_128_SGD_Momentum_512_0.0006_seed1
+Skipping (FID and fmem already exist): gmm_Sprites16_4096_512_Adam_512_0.0006_seed1
+Skipping (FID and fmem already exist): gmm_Sprites16_512_512_Adam_512_0.0006_seed1
+Skipping (FID and fmem already exist): unet_Sprites16_1024_16_Adam_512_0.0001_seed1
+Skipping (FID and fmem already exist): unet_Sprites16_1024_32_Adam_512_0.0001_seed1
+Skipping (FID and fmem already exist): unet_Sprites16_1024_32_Adam_512_0.0001_seed1_old
+Skipping (FID and fmem already exist): unet_Sprites16_1024_32_SGD_Momentum_512_0.0001_seed1
+Skipping (FID and fmem already exist): unet_Sprites16_1024_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k
+Skipping (FID and fmem already exist): unet_Sprites16_1024_64_Adam_512_0.0001_seed1
+Skipping (FID and fmem already exist): unet_Sprites16_1024_8_Adam_512_0.0001_seed1
+
+=== Evaluating unet_Sprites16_1024_8_Adam_512_0.0001_seed1_old ===
+Detected generated batches per checkpoint: 1
+Running: /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/bin/python /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Evaluation/compute_fmem.py -D Sprites -n 1024 -s 16 -LR 0.0001 -O Adam -W 8 -B 512 -t -1 --experiment_dir unet_Sprites16_1024_8_Adam_512_0.0001_seed1_old --device cuda:0 --model_type unet --seed 1 --tag old -Ns 1 --batch_sample_size 100 --gap_threshold 0.3333333333333333
+Running: /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/bin/python /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Evaluation/compute_FID.py -D Sprites -n 1024 -s 16 -LR 0.0001 -O Adam -W 8 -B 512 -t -1 --experiment_dir unet_Sprites16_1024_8_Adam_512_0.0001_seed1_old --device cuda:0 --model_type unet --seed 1 --tag old -istat 1 --N1 0 --N2 1 --batch_size_samples 100 --rebuild_stats
+
+=== Evaluating unet_Sprites16_2048_32_Adam_512_0.0001_seed1 ===
+Detected generated batches per checkpoint: 1
+Running: /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/bin/python /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Evaluation/compute_fmem.py -D Sprites -n 2048 -s 16 -LR 0.0001 -O Adam -W 32 -B 512 -t -1 --experiment_dir unet_Sprites16_2048_32_Adam_512_0.0001_seed1 --device cuda:0 --model_type unet --seed 1 -Ns 1 --batch_sample_size 100 --gap_threshold 0.3333333333333333
+Running: /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/bin/python /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Evaluation/compute_FID.py -D Sprites -n 2048 -s 16 -LR 0.0001 -O Adam -W 32 -B 512 -t -1 --experiment_dir unet_Sprites16_2048_32_Adam_512_0.0001_seed1 --device cuda:0 --model_type unet --seed 1 -istat 1 --N1 0 --N2 1 --batch_size_samples 100 --rebuild_stats
+Skipping (FID and fmem already exist): unet_Sprites16_2048_32_Adam_512_0.0001_seed1_old
+
+=== Evaluating unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k ===
+Detected generated batches per checkpoint: 1
+Running: /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/bin/python /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Evaluation/compute_fmem.py -D Sprites -n 2048 -s 16 -LR 0.003 -O SGD_Momentum -W 32 -B 512 -t -1 --experiment_dir unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k --device cuda:0 --model_type unet --seed 1 --tag sgdcos_lr3e-3_warm10k -Ns 1 --batch_sample_size 100 --gap_threshold 0.3333333333333333
+Running: /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/bin/python /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Evaluation/compute_FID.py -D Sprites -n 2048 -s 16 -LR 0.003 -O SGD_Momentum -W 32 -B 512 -t -1 --experiment_dir unet_Sprites16_2048_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k --device cuda:0 --model_type unet --seed 1 --tag sgdcos_lr3e-3_warm10k -istat 1 --N1 0 --N2 1 --batch_size_samples 100 --rebuild_stats
+
+=== Evaluating unet_Sprites16_4096_32_Adam_512_0.0001_seed1 ===
+Detected generated batches per checkpoint: 1
+Running: /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/bin/python /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Evaluation/compute_fmem.py -D Sprites -n 4096 -s 16 -LR 0.0001 -O Adam -W 32 -B 512 -t -1 --experiment_dir unet_Sprites16_4096_32_Adam_512_0.0001_seed1 --device cuda:0 --model_type unet --seed 1 -Ns 1 --batch_sample_size 100 --gap_threshold 0.3333333333333333
+Running: /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/bin/python /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Evaluation/compute_FID.py -D Sprites -n 4096 -s 16 -LR 0.0001 -O Adam -W 32 -B 512 -t -1 --experiment_dir unet_Sprites16_4096_32_Adam_512_0.0001_seed1 --device cuda:0 --model_type unet --seed 1 -istat 1 --N1 0 --N2 1 --batch_size_samples 100 --rebuild_stats
+Skipping (FID and fmem already exist): unet_Sprites16_4096_32_Adam_512_0.0001_seed1_old
+
+=== Evaluating unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k ===
+Detected generated batches per checkpoint: 1
+Running: /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/bin/python /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Evaluation/compute_fmem.py -D Sprites -n 4096 -s 16 -LR 0.003 -O SGD_Momentum -W 32 -B 512 -t -1 --experiment_dir unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k --device cuda:0 --model_type unet --seed 1 --tag sgdcos_lr3e-3_warm10k -Ns 1 --batch_sample_size 100 --gap_threshold 0.3333333333333333
+Running: /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/bin/python /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Evaluation/compute_FID.py -D Sprites -n 4096 -s 16 -LR 0.003 -O SGD_Momentum -W 32 -B 512 -t -1 --experiment_dir unet_Sprites16_4096_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k --device cuda:0 --model_type unet --seed 1 --tag sgdcos_lr3e-3_warm10k -istat 1 --N1 0 --N2 1 --batch_size_samples 100 --rebuild_stats
+
+=== Evaluating unet_Sprites16_512_32_Adam_512_0.0001_seed1 ===
+Detected generated batches per checkpoint: 1
+Running: /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/bin/python /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Evaluation/compute_fmem.py -D Sprites -n 512 -s 16 -LR 0.0001 -O Adam -W 32 -B 512 -t -1 --experiment_dir unet_Sprites16_512_32_Adam_512_0.0001_seed1 --device cuda:0 --model_type unet --seed 1 -Ns 1 --batch_sample_size 100 --gap_threshold 0.3333333333333333
+Running: /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/bin/python /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Evaluation/compute_FID.py -D Sprites -n 512 -s 16 -LR 0.0001 -O Adam -W 32 -B 512 -t -1 --experiment_dir unet_Sprites16_512_32_Adam_512_0.0001_seed1 --device cuda:0 --model_type unet --seed 1 -istat 1 --N1 0 --N2 1 --batch_size_samples 100 --rebuild_stats
+Skipping (FID and fmem already exist): unet_Sprites16_512_32_Adam_512_0.0001_seed1_old
+
+=== Evaluating unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k ===
+Detected generated batches per checkpoint: 1
+Running: /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/bin/python /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Evaluation/compute_fmem.py -D Sprites -n 512 -s 16 -LR 0.003 -O SGD_Momentum -W 32 -B 512 -t -1 --experiment_dir unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k --device cuda:0 --model_type unet --seed 1 --tag sgdcos_lr3e-3_warm10k -Ns 1 --batch_sample_size 100 --gap_threshold 0.3333333333333333
+Running: /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/.venv/bin/python /work3/s204164/Why-Diffusion-Models-Don-t-Memorize/Experiments/src/Evaluation/compute_FID.py -D Sprites -n 512 -s 16 -LR 0.003 -O SGD_Momentum -W 32 -B 512 -t -1 --experiment_dir unet_Sprites16_512_32_SGD_Momentum_512_0.0030_seed1_sgdcos_lr3e-3_warm10k --device cuda:0 --model_type unet --seed 1 --tag sgdcos_lr3e-3_warm10k -istat 1 --N1 0 --N2 1 --batch_size_samples 100 --rebuild_stats
+
+Done. Evaluated 7 experiment(s), skipped 27.

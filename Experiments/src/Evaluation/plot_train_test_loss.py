@@ -318,6 +318,8 @@ def plot_train_test_loss(
     timesteps=1000,
     recompute_train=False,
     title="Sprites train/test loss",
+    trim_to_shortest=False,
+    label_mode="n",
 ):
     device = ensure_device(device)
 
@@ -367,14 +369,27 @@ def plot_train_test_loss(
         if len(aligned_steps) == 0:
             raise RuntimeError("No positive steps to plot for {:s}".format(exp))
 
+        if label_mode == "width":
+            label = "W = {:d}".format(meta.nbase)
+        else:
+            label = "n = {:d}".format(meta.n)
+
         runs.append(
             {
-                "label": "n = {:d}".format(meta.n),
+                "label": label,
                 "steps": aligned_steps,
                 "train": aligned_train,
                 "test": aligned_test,
             }
         )
+
+    if trim_to_shortest:
+        max_short = min(float(np.max(run["steps"])) for run in runs)
+        for run in runs:
+            keep = run["steps"] <= max_short
+            run["steps"] = run["steps"][keep]
+            run["train"] = run["train"][keep]
+            run["test"] = run["test"][keep]
 
     x_min = min(float(np.min(run["steps"])) for run in runs)
     x_max = max(float(np.max(run["steps"])) for run in runs)
@@ -408,8 +423,6 @@ def plot_train_test_loss(
         loc="lower left",
         frameon=False,
         fontsize=12,
-        title="Line style",
-        title_fontsize=11,
     )
 
     fig.tight_layout()
@@ -471,6 +484,17 @@ def parse_args():
         default="Sprites train/test loss",
         help="Plot title.",
     )
+    parser.add_argument(
+        "--trim-to-shortest",
+        action="store_true",
+        help="Trim curves to the shortest run (minimum max step).",
+    )
+    parser.add_argument(
+        "--label-mode",
+        choices=["n", "width"],
+        default="n",
+        help="Legend labels: dataset size (n) or width (W).",
+    )
     return parser.parse_args()
 
 
@@ -483,6 +507,8 @@ def main():
         timesteps=args.timesteps,
         recompute_train=args.recompute_train,
         title=args.title,
+        trim_to_shortest=args.trim_to_shortest,
+        label_mode=args.label_mode,
     )
 
 
