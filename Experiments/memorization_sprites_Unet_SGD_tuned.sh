@@ -19,20 +19,4 @@ module load cuda/11.6
 source .venv/bin/activate
 cd src/Training
 
-python run_Sprites.py \
-  -n 1024 \
-  -s 16 \
-  -LR 0.003 \
-  -O SGD_Momentum \
-  -W 32 \
-  -B 512 \
-  -t -1 \
-  -M Unet \
-  --n_steps 200000 \
-  --momentum 0.9 \
-  --nesterov \
-  --scheduler cosine \
-  --warmup_steps 10000 \
-  --min_lr_ratio 0.02 \
-  --grad_clip 1.0 \
-  --tag sgdcos_lr3e-3_warm10k
+python run_Sprites.py -n 1024 -s 16 -LR 0.003 -O SGD_Momentum -W 32 -B 512 -t -1 -M Unet --n_steps 200000 --momentum 0.9 --nesterov --scheduler cosine --warmup_steps 10000 --min_lr_ratio 0.02 --grad_clip 1.0 --tag sgdcos_lr3e-3_warm10k
